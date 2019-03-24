@@ -16,6 +16,8 @@ public class AcreedorServiceImplement implements IAcreedorService{
 	private IAcreedorDao acreedorDao;
 	@Override
 	@Transactional(readOnly=true)
+	
+	
 	public List<Acreedor> findAll() {
 		// TODO Auto-generated method stub
 		return (List<Acreedor>) acreedorDao.findAll();
