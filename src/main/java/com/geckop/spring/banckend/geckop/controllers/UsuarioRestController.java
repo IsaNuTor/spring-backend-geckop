@@ -40,16 +40,12 @@ public class UsuarioRestController {
         	return false;
     }	
     
-   @PostMapping("/usuario")
-    public Boolean login( @RequestParam String id, @RequestParam String pass) {
-    	Usuario user = usuarioService.findById(id);
-    	if(  user != null)
-        	if(user.getPassword().equals(pass))
-        		return true;
-        	else
-        		return false;
-        else 
-        	return false;
-    	
+   @PostMapping(path="/usuario")
+    public Boolean login( @RequestBody Usuario usuario) {
+	   Usuario user  = usuarioService.findById(usuario.getDni());
+	   if(usuario.getPassword().equals( user.getPassword() ) )
+    	return true;
+	   else
+		 return false;
     }
 }
