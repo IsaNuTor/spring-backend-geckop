@@ -11,5 +11,6 @@ public interface IUsuarioService {
 	List<Usuario> findAll();
 
 	Usuario findById(String id);
+	Usuario insert(Usuario usuario);
 	
 }
