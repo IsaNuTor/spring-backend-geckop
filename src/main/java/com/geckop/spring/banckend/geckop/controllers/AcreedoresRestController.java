@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.geckop.spring.banckend.geckop.models.entity.Acreedor;
+import com.geckop.spring.banckend.geckop.models.entity.Cliente;
 import com.geckop.spring.banckend.geckop.models.services.IAcreedorService;
 
 // Damos acceso a este dominio para que pueda enviar y recibir datos.
@@ -31,9 +33,9 @@ public class AcreedoresRestController {
 	}
 	
 	//Va a retornar el acreedor convertido en json
-	@GetMapping("/acreedores/{id}")
-	public Acreedor show(@PathVariable String id) {
-		return acreedorService.buscarAcreedorPorId(id);
+	@GetMapping("/acreedores/{nif}")
+	public Acreedor show(@PathVariable String nif) {
+		return acreedorService.buscarAcreedorPorNif(nif);
 	}
 	
 	// Retorna el acreedor que se creó en la base de datos.
@@ -43,6 +45,22 @@ public class AcreedoresRestController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Acreedor crearAcreedor(@RequestBody Acreedor acreedor) {
 		return acreedorService.insertarAcreedor(acreedor);
+	}
+	
+	// Para actualizar, necesitamos también el nif para poder
+	// obtenerlo de la base de datos y actualizar sus atributos.
+	@PutMapping("/acreedores/{nif}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Acreedor actualizarAcreedor(@RequestBody Acreedor acreedor, @PathVariable String nif) {
+		// Primero tenemos que obtener el acreedor de la base de datos.
+		Acreedor acreedorActual = acreedorService.buscarAcreedorPorNif(nif);
+		
+		// Al cliente de la base de datos, ponemos los datos que nos vienen.
+		acreedorActual.setNombre(acreedor.getNombre());
+		acreedorActual.setNif(acreedor.getNif());
+		acreedorActual.setIban(acreedor.getIban());
+		
+		return acreedorService.insertarAcreedor(acreedorActual);
 	}
 }
 

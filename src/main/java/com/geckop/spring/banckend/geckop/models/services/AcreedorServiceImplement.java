@@ -26,9 +26,9 @@ public class AcreedorServiceImplement implements IAcreedorService{
 	
 	@Override
 	@Transactional(readOnly=true)
-	public Acreedor buscarAcreedorPorId(String id) {
+	public Acreedor buscarAcreedorPorNif(String nif) {
 		// TODO Auto-generated method stub
-		return acreedorDao.findOne(id);
+		return acreedorDao.findOne(nif);
 	}
 	
 	@Override

@@ -9,10 +9,10 @@ public interface IAcreedorService {
 	// Nos devuelve en formato lista el contenido de la tabla acreedor.
 	public List<Acreedor> findAll();
 	
-	// Buscar un acreedor por id, nos devuelve el acreedor.
-	public Acreedor buscarAcreedorPorId(String id);
+	// Buscar un acreedor por nif, nos devuelve el acreedor.
+	public Acreedor buscarAcreedorPorNif(String nif);
 	
-	// Nos devuelve el acreedor que se ha insertado en la tabla. (ya contiene el id)
+	// Nos devuelve el acreedor que se ha insertado en la tabla. (ya contiene el nif)
 	public Acreedor insertarAcreedor(Acreedor acreedor);
 	
 	// Borrar en la tabla. Le pasamos el id del acreedor que vamos a eliminar de la tabla.
