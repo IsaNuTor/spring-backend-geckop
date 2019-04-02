@@ -64,7 +64,7 @@ public class AcreedoresRestController {
 	}
 	
 	// borrar, y le pasamos el nif del acreedor que queremos eliminar.
-	@DeleteMapping("/clientes/{nif}")
+	@DeleteMapping("/acreedores/{nif}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void borrarCliente(@PathVariable String nif) {
 		acreedorService.eliminarAcreedor(nif);
