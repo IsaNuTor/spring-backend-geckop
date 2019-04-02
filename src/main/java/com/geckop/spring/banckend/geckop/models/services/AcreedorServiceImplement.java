@@ -38,12 +38,11 @@ public class AcreedorServiceImplement implements IAcreedorService{
 		return acreedorDao.save(acreedor);
 	}
 	
-	/*
 	@Override
 	@Transactional
-	public void eliminarAcreedor(String id) {
+	public void eliminarAcreedor(String nif) {
 		// TODO Auto-generated method stub
-		return acreedorDao.delete(id);
-	}*/
+		acreedorDao.borrarPorNif(nif);
+	}
 
 }

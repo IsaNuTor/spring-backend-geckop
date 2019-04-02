@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.geckop.spring.banckend.geckop.models.entity.Acreedor;
-import com.geckop.spring.banckend.geckop.models.entity.Cliente;
 import com.geckop.spring.banckend.geckop.models.services.IAcreedorService;
 
 // Damos acceso a este dominio para que pueda enviar y recibir datos.
@@ -61,6 +61,13 @@ public class AcreedoresRestController {
 		acreedorActual.setIban(acreedor.getIban());
 		
 		return acreedorService.insertarAcreedor(acreedorActual);
+	}
+	
+	// borrar, y le pasamos el nif del acreedor que queremos eliminar.
+	@DeleteMapping("/clientes/{nif}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void borrarCliente(@PathVariable String nif) {
+		acreedorService.eliminarAcreedor(nif);
 	}
 }
 
