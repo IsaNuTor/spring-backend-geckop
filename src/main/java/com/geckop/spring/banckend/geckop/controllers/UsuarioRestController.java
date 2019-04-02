@@ -43,7 +43,7 @@ public class UsuarioRestController {
     
     
     /*Devuelve el usuario logueado o null si no ha podido crearlo*/
-   @PostMapping(path="/usuario")
+   @PostMapping(path="/login")
     public Usuario login( @RequestBody Usuario usuario) {
 	   Usuario user  = usuarioService.findById(usuario.getDni());
 	   if(usuario.getPassword().equals( user.getPassword() ) )
@@ -64,7 +64,7 @@ public class UsuarioRestController {
    
    
    /*Devuelve el usuario creado o null si no ha podido crearlo*/
-  // @PutMapping(path="/usuario")
+  @PostMapping(path="/registro")
    public Usuario registro(@RequestBody Usuario usuario) {
 	   
 	   if( usuarioService.findById(usuario.getDni()) == null) 
