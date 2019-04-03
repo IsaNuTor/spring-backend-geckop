@@ -42,7 +42,7 @@ public class AcreedorServiceImplement implements IAcreedorService{
 	@Transactional
 	public void eliminarAcreedor(String nif) {
 		// TODO Auto-generated method stub
-		acreedorDao.borrarPorNif(nif);
+		acreedorDao.delete(nif);
 	}
 
 }
