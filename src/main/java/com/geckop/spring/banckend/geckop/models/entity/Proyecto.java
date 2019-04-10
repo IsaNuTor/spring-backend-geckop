@@ -3,9 +3,11 @@ package com.geckop.spring.banckend.geckop.models.entity;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "proyecto")
@@ -18,9 +20,18 @@ public class Proyecto implements Serializable {
 	private double presupuesto;
 	private int nContabilidad;
 
+	@Column(name="dni_ip1")
 	private String dniIp1;
+	
+	@Column(name="dni_ip2")
 	private String dniIp2;
+	
+	@NotNull(message="No puede estar vacio")
+	@Column(name="fecha_inicio")
 	private Date fechaInicio;
+	
+	@NotNull(message="No puede estar vacio")
+	@Column(name="fecha_cierre")
 	private Date fechaCierre;
 
 	public String getAcronimo() {
