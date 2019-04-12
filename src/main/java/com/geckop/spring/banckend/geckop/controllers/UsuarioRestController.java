@@ -47,7 +47,7 @@ public class UsuarioRestController {
     public Usuario login( @RequestBody Usuario usuario) {
 	   Usuario user  = usuarioService.findById(usuario.getDni());
 	   if(usuario.getPassword().equals( user.getPassword() ) )
-    	return usuario;
+    	return user;
 	   else
 		 return null;
     }
