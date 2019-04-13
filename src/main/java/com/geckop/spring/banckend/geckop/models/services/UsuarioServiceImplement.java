@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.geckop.spring.banckend.geckop.models.dao.IUsuarioDao;
-import com.geckop.spring.banckend.geckop.models.entity.Acreedor;
 import com.geckop.spring.banckend.geckop.models.entity.Usuario;
 
 @Service

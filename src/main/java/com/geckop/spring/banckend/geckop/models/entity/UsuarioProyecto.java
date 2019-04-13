@@ -13,8 +13,8 @@ import javax.persistence.Table;
  * */
 
 @Entity
-@Table(name = "usuariosproyecto")
-public class UsuariosProyecto implements Serializable {
+@Table(name = "usuarioproyecto")
+public class UsuarioProyecto implements Serializable {
 
 	@Id
 	private String dni;
