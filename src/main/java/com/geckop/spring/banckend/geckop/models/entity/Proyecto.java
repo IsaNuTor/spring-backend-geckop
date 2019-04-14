@@ -20,11 +20,11 @@ public class Proyecto implements Serializable {
 	private double presupuesto;
 	private int nContabilidad;
 
-	@Column(name="dni_ip1")
-	private String dniIp1;
+	@Column(name="ip1")
+	private String ip1;
 	
-	@Column(name="dni_ip2")
-	private String dniIp2;
+	@Column(name="ip2")
+	private String ip2;
 	
 	@NotNull(message="No puede estar vacio")
 	@Column(name="fecha_inicio")
@@ -66,20 +66,20 @@ public class Proyecto implements Serializable {
 		this.nContabilidad = nContabilidad;
 	}
 
-	public String getDniIp1() {
-		return dniIp1;
+	public String getIp1() {
+		return ip1;
 	}
 
-	public void setDniIp1(String dniIp1) {
-		this.dniIp1 = dniIp1;
+	public void setIp1(String ip1) {
+		this.ip1 = ip1;
 	}
 
 	public String getDniIp2() {
-		return dniIp2;
+		return ip2;
 	}
 
-	public void setDniIp2(String dniIp2) {
-		this.dniIp2 = dniIp2;
+	public void setIp2(String ip2) {
+		this.ip2 = ip2;
 	}
 
 	public Date getFechaInicio() {
