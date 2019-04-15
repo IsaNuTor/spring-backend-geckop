@@ -1,5 +1,7 @@
 package com.geckop.spring.banckend.geckop.models.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,11 @@ public class ProyectoServiceImplement implements IProyectoService {
 	@Override
 	public Proyecto insertarProyecto(Proyecto proyecto) {
 		return proyectoDao.save(proyecto);
+	}
+
+	@Override
+	public List<Proyecto> findAll() {
+		return (List<Proyecto>) proyectoDao.findAll();
 	}
 
 }
