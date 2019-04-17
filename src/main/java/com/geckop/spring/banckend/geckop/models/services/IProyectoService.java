@@ -9,4 +9,8 @@ public interface IProyectoService {
 	public Proyecto insertarProyecto(Proyecto proyecto);
 
 	public List<Proyecto> findAll();
+
+	public void borrarProyecto(String acronimo);
+	
+	public void buscarProyecto(String id);
 }

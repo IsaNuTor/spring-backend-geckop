@@ -44,7 +44,10 @@ public class AcreedoresRestController {
 	@PostMapping("/acreedores")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Acreedor crearAcreedor(@RequestBody Acreedor acreedor) {
-		return acreedorService.insertarAcreedor(acreedor);
+		if(!this.buscarAcreedor(acreedor.getNif()))
+			return acreedorService.insertarAcreedor(acreedor);
+		else
+			return null;
 	}
 	
 	// Para actualizar, necesitamos también el nif para poder
@@ -68,6 +71,18 @@ public class AcreedoresRestController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void borrarAcreedor(@PathVariable String nif) {
 		acreedorService.eliminarAcreedor(nif);
+	}
+	
+	
+	public boolean buscarAcreedor(String nif) {
+		try {
+			if(acreedorService.buscarAcreedorPorNif(nif) != null)
+				return true;
+			else 
+				return false;
+		}catch(Exception e){
+			return false;
+		}
 	}
 }
 

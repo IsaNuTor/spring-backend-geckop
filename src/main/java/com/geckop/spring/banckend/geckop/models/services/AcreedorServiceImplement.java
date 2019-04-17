@@ -30,12 +30,13 @@ public class AcreedorServiceImplement implements IAcreedorService{
 		// TODO Auto-generated method stub
 		return acreedorDao.findOne(nif);
 	}
+
 	
 	@Override
 	@Transactional
 	public Acreedor insertarAcreedor(Acreedor acreedor) {
-		// TODO Auto-generated method stub
-		return acreedorDao.save(acreedor);
+			return acreedorDao.save(acreedor);
+	
 	}
 	
 	@Override

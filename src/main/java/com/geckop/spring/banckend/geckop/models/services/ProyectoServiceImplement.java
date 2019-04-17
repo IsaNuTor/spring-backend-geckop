@@ -22,5 +22,16 @@ public class ProyectoServiceImplement implements IProyectoService {
 	public List<Proyecto> findAll() {
 		return (List<Proyecto>) proyectoDao.findAll();
 	}
+	
+	@Override
+	public void buscarProyecto(String id) {
+		proyectoDao.findOne(id);
+	}
+
+	@Override
+	public void borrarProyecto(String acronimo) {
+		proyectoDao.delete(acronimo);
+		
+	}
 
 }
