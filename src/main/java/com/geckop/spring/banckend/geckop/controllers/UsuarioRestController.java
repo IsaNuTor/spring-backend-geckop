@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.geckop.spring.banckend.geckop.models.entity.Usuario;
 import com.geckop.spring.banckend.geckop.models.services.IUsuarioService;
 
-@CrossOrigin(origins= {"http://localhost:4200"})
+@CrossOrigin(origins= {"http://localhost:4200", "https://geckop.firebaseapp.com"})
 @RestController
 @RequestMapping("/api")
 public class UsuarioRestController {

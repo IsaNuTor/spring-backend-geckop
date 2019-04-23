@@ -11,7 +11,7 @@ import com.geckop.spring.banckend.geckop.models.entity.UsuarioProyecto;
 import com.geckop.spring.banckend.geckop.models.services.IUsuarioProyectoService;
 
 //Damos acceso a este dominio para que pueda enviar y recibir datos.
-@CrossOrigin(origins= {"http://localhost:4200"})
+@CrossOrigin(origins= {"http://localhost:4200", "https://geckop.firebaseapp.com"})
 @RestController
 @RequestMapping("/api")
 public class UsuarioProyectoRestController {
