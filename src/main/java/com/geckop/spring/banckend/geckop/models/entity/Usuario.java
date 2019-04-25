@@ -14,16 +14,7 @@ public class Usuario implements Serializable {
 	private String apellido1;
 	private String apellido2;
 	private String email;
-	private String tipo;
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
+	
 	public String getDni() {
 		return dni;
 	}
