@@ -24,8 +24,8 @@ public class ProyectoServiceImplement implements IProyectoService {
 	}
 	
 	@Override
-	public void buscarProyecto(String id) {
-		proyectoDao.findOne(id);
+	public Proyecto buscarProyecto(String id) {
+		return proyectoDao.findOne(id);
 	}
 
 	@Override

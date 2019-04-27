@@ -54,8 +54,10 @@ public class ProyectoRestController {
 	
 	public boolean buscarProyecto(String id) {
 		try {
-			proyectoService.buscarProyecto(id);
-			return true;
+			if (proyectoService.buscarProyecto(id) != null)
+				return true;
+			else
+				return false;
 		}catch(Exception e) {
 			return false;
 		}

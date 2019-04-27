@@ -12,5 +12,5 @@ public interface IProyectoService {
 
 	public void borrarProyecto(String acronimo);
 	
-	public void buscarProyecto(String id);
+	public Proyecto buscarProyecto(String id);
 }
