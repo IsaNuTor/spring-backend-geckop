@@ -63,6 +63,18 @@ public class UsuarioRestController {
    
    
    
+   /*@PutMapping("/usuario/{nif}")
+   @ResponseStatus(HttpStatus.CREATED)
+   public Usuario actualizarEmail(@RequestBody String email, @PathVariable String nif  ) {
+ 	  if(usuarioService.findById(nif) != null) {
+ 		  usuarioService.
+ 	  }
+ 	  
+	   
+	   return user;
+   }
+   */
+   
    /*Devuelve el usuario creado o null si no ha podido crearlo*/
   @PostMapping(path="/registro")
    public Usuario registro(@RequestBody Usuario usuario) {
@@ -72,6 +84,47 @@ public class UsuarioRestController {
 			   return usuario;
 		   
 	   return null;
-   }	   
+   }
+  
+  @PostMapping(path="/comprobarPass")
+  public Boolean comprobarContrasena(@RequestBody String[] variables) {
+	   String dni = variables[0];
+	   String pass = variables[1];
+	   Usuario user = usuarioService.findById(dni);
+	   if( user != null)
+		   if (user.getPassword() == pass)
+			   return true;
+		   
+	   return false;
+  }
+  
+  @PostMapping(path="/setPass")
+  public Boolean setContrasena(@RequestBody String[] variables) {
+	   String dni = variables[0];
+	   String pass = variables[1];
+	   Usuario user = usuarioService.findById(dni);
+	   if( user != null) {
+		 user.setPassword(pass);
+	     return true;
+	   }
+		   
+	   return false;
+  }
+  
+  @PostMapping(path="/setEmail")
+  public Boolean setEmail(@RequestBody String[] variables) {
+	   String dni = variables[0];
+	   String email = variables[1];
+	   Usuario user = usuarioService.findById(dni);
+	   if( user != null) {
+		 user.setEmail(email);
+	     return true;
+	   }
+		   
+	   return false;
+  }
+  
+
+  
 		  
 }
