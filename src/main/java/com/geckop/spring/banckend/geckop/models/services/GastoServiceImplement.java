@@ -2,13 +2,17 @@ package com.geckop.spring.banckend.geckop.models.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.geckop.spring.banckend.geckop.models.dao.IGastoDao;
 import com.geckop.spring.banckend.geckop.models.entity.Gasto;
 
+@Service
 public class GastoServiceImplement implements IGastoService{
 
+	@Autowired
 	private IGastoDao gastoDao;
 	
 	@Override

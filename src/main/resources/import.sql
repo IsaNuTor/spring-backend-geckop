@@ -15,5 +15,6 @@ INSERT INTO acreedor (nif, iban, nombre) VALUES('05648746A', 'ES40548500004444',
 /*Tabla Usuario*/
 INSERT INTO usuario (dni, password, nombre, apellido1, apellido2, email) VALUES('05464654K', 'pass', 'Isa', 'Nuñez', 'De La Torre', 'isa@ucm.es');
 
-
+/*Tabla gasto*/
+INSERT INTO gasto (id_orden, comentarios, importe, descripcion, iva) VALUES('1', 'coment', '25', 'descripcion', '21');
 

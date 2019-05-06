@@ -3,6 +3,8 @@ package com.geckop.spring.banckend.geckop.models.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,8 +13,10 @@ import javax.persistence.Table;
 public class Gasto implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
+	private Long id_orden;
 	private String comentarios;
 	private double importe;
 	private String descripcion;
@@ -24,6 +28,14 @@ public class Gasto implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getId_orden() {
+		return id_orden;
+	}
+
+	public void setId_orden(Long id_orden) {
+		this.id_orden = id_orden;
 	}
 
 	public String getComentarios() {
