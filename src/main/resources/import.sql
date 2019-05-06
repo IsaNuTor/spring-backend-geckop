@@ -18,5 +18,6 @@ INSERT INTO usuario (dni, password, nombre, apellido1, apellido2, email) VALUES(
 INSERT INTO usuario (dni, password, nombre, apellido1, apellido2, email) VALUES('01234567A', 'passs', 'Mercedes', 'García', 'Merayo', 'mercedes@ucm.es');
 INSERT INTO usuario (dni, password, nombre, apellido1, apellido2, email) VALUES('04863609Y', 'passs', 'Aza', 'Fernández', 'Notario', 'aza@ucm.es');
 
-
+/*Tabla gasto*/
+INSERT INTO gasto (id_orden, comentarios, importe, descripcion, iva) VALUES('1', 'coment', '25', 'descripcion', '21');
 
