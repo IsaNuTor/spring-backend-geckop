@@ -92,7 +92,7 @@ public class UsuarioRestController {
 	   String pass = variables[1];
 	   Usuario user = usuarioService.findById(dni);
 	   if( user != null)
-		   if (user.getPassword() == pass)
+		   if (user.getPassword().equals(pass))
 			   return true;
 		   
 	   return false;
@@ -105,6 +105,8 @@ public class UsuarioRestController {
 	   Usuario user = usuarioService.findById(dni);
 	   if( user != null) {
 		 user.setPassword(pass);
+		 this.usuarioService.delete(dni);
+		 this.usuarioService.insert(user);
 	     return true;
 	   }
 		   
@@ -118,6 +120,8 @@ public class UsuarioRestController {
 	   Usuario user = usuarioService.findById(dni);
 	   if( user != null) {
 		 user.setEmail(email);
+		 this.usuarioService.delete(dni);
+		 this.usuarioService.insert(user);
 	     return true;
 	   }
 		   

@@ -13,7 +13,10 @@ INSERT INTO acreedor (nif, iban, nombre) VALUES('46546156L', 'ES40548500003333',
 INSERT INTO acreedor (nif, iban, nombre) VALUES('05648746A', 'ES40548500004444', 'Pedro');
 
 /*Tabla Usuario*/
-INSERT INTO usuario (dni, password, nombre, apellido1, apellido2, email) VALUES('05464654K', 'pass', 'Isa', 'Nuñez', 'De La Torre', 'isa@ucm.es');
+INSERT INTO usuario (dni, password, nombre, apellido1, apellido2, email) VALUES('05464654K', 'passs', 'Isa', 'Núñez', 'De La Torre', 'isa@ucm.es');
+INSERT INTO usuario (dni, password, nombre, apellido1, apellido2, email) VALUES('12345678A', 'passs', 'Pepito', 'Núñez', 'Pérez', 'pepito@ucm.es');
+INSERT INTO usuario (dni, password, nombre, apellido1, apellido2, email) VALUES('01234567A', 'passs', 'Mercedes', 'García', 'Merayo', 'mercedes@ucm.es');
+INSERT INTO usuario (dni, password, nombre, apellido1, apellido2, email) VALUES('04863609Y', 'passs', 'Aza', 'Fernández', 'Notario', 'aza@ucm.es');
 
 
 

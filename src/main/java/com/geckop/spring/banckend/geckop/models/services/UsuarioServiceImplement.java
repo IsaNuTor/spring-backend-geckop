@@ -33,4 +33,16 @@ public class UsuarioServiceImplement implements IUsuarioService {
 		// TODO Auto-generated method stub
 		return usuarioDao.save(user);
 	}
+
+	@Override
+	public Boolean delete(String id) {
+		try{
+			usuarioDao.delete(id);
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+		
+	}
+	
 }

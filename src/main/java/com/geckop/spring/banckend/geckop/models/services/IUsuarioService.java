@@ -12,5 +12,6 @@ public interface IUsuarioService {
 
 	Usuario findById(String id);
 	Usuario insert(Usuario usuario);
+	Boolean delete(String id);
 	
 }
