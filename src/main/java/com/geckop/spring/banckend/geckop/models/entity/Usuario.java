@@ -14,6 +14,10 @@ public class Usuario implements Serializable {
 	private String apellido1;
 	private String apellido2;
 	private String email;
+	private String telefono;
+	private String departamento;
+	private String centro;
+	
 	
 	public String getDni() {
 		return dni;
@@ -57,6 +61,30 @@ public class Usuario implements Serializable {
 
 	public String getEmail() {
 		return email;
+	}
+	
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
+	}
+
+	public String getCentro() {
+		return centro;
+	}
+
+	public void setCentro(String centro) {
+		this.centro = centro;
 	}
 
 	public void setEmail(String email) {
