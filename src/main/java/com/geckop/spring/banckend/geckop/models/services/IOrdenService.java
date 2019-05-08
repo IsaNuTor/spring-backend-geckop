@@ -1,5 +1,19 @@
 package com.geckop.spring.banckend.geckop.models.services;
 
-public interface IOrdenService {
+import java.util.List;
 
+import com.geckop.spring.banckend.geckop.models.entity.Orden;
+
+public interface IOrdenService {
+	// Nos devuelve la lista de todas las ordenes que hay guardadas en la tabla orden.
+	public List<Orden> findAll();
+	
+	// Buscar una orden por proyecto y numeracion, nos devuelve la orden.
+	public Orden buscarOrdenPorId(String acronimo, Long numeracion);
+	
+	// Nos devuelve la orden que se ha insertado en la tabla.
+	public Orden insertarOrden(Orden orden);
+	
+	// Borrar en la tabla. Le pasamos el id del gasto que vamos a eliminar de la tabla.
+	public void eliminarOrden(String acronimo, Long numeracion);
 }
