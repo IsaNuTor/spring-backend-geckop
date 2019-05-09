@@ -46,4 +46,9 @@ public class AcreedorServiceImplement implements IAcreedorService{
 		acreedorDao.delete(nif);
 	}
 
+	@Override
+	public Boolean update(Acreedor acreedor) {
+		return acreedorDao.save(acreedor) != null;
+	}
+
 }

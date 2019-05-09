@@ -41,7 +41,7 @@ public class AcreedoresRestController {
 	// Retorna el acreedor que se creó en la base de datos.
 	// Como viene en formato json desde Angular, indicamos
 	// al parámetro de entrada que es un @RequestBody
-	@PostMapping("/acreedores")
+	@PostMapping("/crearAcreedor")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Acreedor crearAcreedor(@RequestBody Acreedor acreedor) {
 		if(!this.buscarAcreedor(acreedor.getNif()))
@@ -49,6 +49,17 @@ public class AcreedoresRestController {
 		else
 			return null;
 	}
+	
+	@PostMapping("/setAcreedor")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Boolean setAcreedor(@RequestBody Acreedor acreedor) {
+		if(!this.buscarAcreedor(acreedor.getNif())) {
+			return acreedorService.update(acreedor);
+			
+		}else
+			return false;
+	}
+	
 	
 	// Para actualizar, necesitamos también el nif para poder
 	// obtenerlo de la base de datos y actualizar sus atributos.

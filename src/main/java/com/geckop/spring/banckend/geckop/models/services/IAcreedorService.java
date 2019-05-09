@@ -17,4 +17,6 @@ public interface IAcreedorService {
 	
 	// Borrar en la tabla. Le pasamos el nif del acreedor que vamos a eliminar de la tabla.
 	public void eliminarAcreedor(String nif);
+
+	public Boolean update(Acreedor acreedor);
 }
