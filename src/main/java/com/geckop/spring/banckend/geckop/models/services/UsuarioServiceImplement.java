@@ -42,7 +42,17 @@ public class UsuarioServiceImplement implements IUsuarioService {
 		}catch(Exception e) {
 			return false;
 		}
-		
 	}
+
+	@Override
+	public Usuario update(Usuario user) {
+		if(this.findById(user.getDni()) != null) {
+			return usuarioDao.save(user);
+		}else{
+			return null;
+		}
+	}
+	
+	
 	
 }

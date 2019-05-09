@@ -98,6 +98,24 @@ public class UsuarioRestController {
 	   return false;
   }
   
+  @PostMapping(path="/setUsuario")
+  public Boolean setUsuario(@RequestBody Usuario user) {
+	   try {
+		 Usuario u = usuarioService.findById(user.getDni());
+		 if( u != null) { 
+		   if(user.getPassword().equals("")) user.setPassword(u.getPassword());  //Ojo puede que cambie al encriptar las contraseñas
+		   this.usuarioService.update(user);
+		   return true;
+		 }
+	   }catch(Exception e){
+		   return false;
+	   }
+	   return false;
+  }
+  
+  
+  
+  /*
   @PostMapping(path="/setPass")
   public Boolean setContrasena(@RequestBody String[] variables) {
 	   String dni = variables[0];
@@ -128,7 +146,7 @@ public class UsuarioRestController {
 	   return false;
   }
   
-
+*/
   
 		  
 }
