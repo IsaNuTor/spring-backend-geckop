@@ -25,3 +25,4 @@ INSERT INTO gasto (id_orden, comentarios, importe, descripcion, iva) VALUES('1',
 INSERT INTO tipogasto (nombre) VALUES('Viajes');
 INSERT INTO tipogasto (nombre) VALUES('Material');
 
+INSERT INTO orden(acron_id, acronimo, numeracion, estado, fecha_orden, num_contabilidad, memoria,relacion, nif_acreedor, observaciones) VALUES('proy_orden', 'acr', '1200', 'pendiente','03-05-21','cont5874521','memoria','relacion','01155456L','obseravaciones');

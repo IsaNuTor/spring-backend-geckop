@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 public class Orden implements Serializable {
 
 	@Id
-	private String  acron_id;
+	private String acron_id;
 
 	// Datos del ip y el acronimo lo sacamos del proyecto
 	private String acronimo;
@@ -33,6 +33,14 @@ public class Orden implements Serializable {
 
 	// Pagar a, necestitamos los datos del acreedor
 	private String nif_acreedor;
+
+	public String getAcron_id() {
+		return acron_id;
+	}
+
+	public void setAcron_id(String acron_id) {
+		this.acron_id = acron_id;
+	}
 
 	@NotNull(message = "No puede estar vacio")
 	private String observaciones;

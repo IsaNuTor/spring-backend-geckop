@@ -23,21 +23,26 @@ public class OrdenServiceImplement implements IOrdenService{
 	}
 
 	@Override
-	public Orden buscarOrdenPorId(String acronimo, Long numeracion) {
+	@Transactional(readOnly=true)
+	public Orden buscarOrdenPorAcryNum(String acronimo, Long numeracion) {
 		// TODO Auto-generated method stub
-		return null;
+		return ordenDao.findByAcryNum(acronimo, numeracion);
 	}
 
 	@Override
+	@Transactional
 	public Orden insertarOrden(Orden orden) {
 		// TODO Auto-generated method stub
-		return null;
+		String id_orden=orden.getAcronimo()+orden.getNumeracion().toString();
+		System.out.println(id_orden);
+		orden.setAcron_id(id_orden);
+		//orden.setAcron_id("proyecto");
+		return ordenDao.save(orden);
 	}
 
 	@Override
-	public void eliminarOrden(String acronimo, Long numeracion) {
-		// TODO Auto-generated method stub
-		
+	@Transactional
+	public void eliminarOrden(String acron_id) {
+		ordenDao.delete(acron_id);	
 	}
-
 }

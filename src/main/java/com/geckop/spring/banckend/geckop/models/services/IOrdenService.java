@@ -9,11 +9,11 @@ public interface IOrdenService {
 	public List<Orden> findAll();
 	
 	// Buscar una orden por proyecto y numeracion, nos devuelve la orden.
-	public Orden buscarOrdenPorId(String acronimo, Long numeracion);
+	public Orden buscarOrdenPorAcryNum(String acronimo, Long numeracion);
 	
 	// Nos devuelve la orden que se ha insertado en la tabla.
 	public Orden insertarOrden(Orden orden);
 	
-	// Borrar en la tabla. Le pasamos el id del gasto que vamos a eliminar de la tabla.
-	public void eliminarOrden(String acronimo, Long numeracion);
+	// Borrar en la tabla. Le pasamos id.
+	public void eliminarOrden(String acron_id);
 }
