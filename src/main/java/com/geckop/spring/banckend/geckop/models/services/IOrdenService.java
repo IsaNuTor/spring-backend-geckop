@@ -15,5 +15,5 @@ public interface IOrdenService {
 	public Orden insertarOrden(Orden orden);
 	
 	// Borrar en la tabla. Le pasamos id.
-	public void eliminarOrden(String acron_id);
+	public void eliminarOrden(Long id);
 }

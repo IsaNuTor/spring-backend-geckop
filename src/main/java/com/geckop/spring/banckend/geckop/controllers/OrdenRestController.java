@@ -53,8 +53,8 @@ public class OrdenRestController {
 	
 	// Elimina una orden
 	//DELETE POSTMAN-http://localhost:8080/api/ordenes/
-	@DeleteMapping("/ordenes/{id_acron}")
-	public void borrarOrden(@PathVariable String id_acron) {
-		ordenService.eliminarOrden(id_acron);
+	@DeleteMapping("/ordenes/{id}")
+	public void borrarOrden(@PathVariable Long id) {
+		ordenService.eliminarOrden(id);
 	}
 }

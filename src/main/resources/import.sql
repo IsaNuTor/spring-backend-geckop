@@ -25,4 +25,37 @@ INSERT INTO gasto (id_orden, comentarios, importe, descripcion, iva) VALUES('1',
 INSERT INTO tipogasto (nombre) VALUES('Viajes');
 INSERT INTO tipogasto (nombre) VALUES('Material');
 
-INSERT INTO orden(acron_id, acronimo, numeracion, estado, fecha_orden, num_contabilidad, memoria,relacion, nif_acreedor, observaciones) VALUES('proy_orden', 'acr', '1200', 'pendiente','03-05-21','cont5874521','memoria','relacion','01155456L','obseravaciones');
+/*Tabla Orden*/
+INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('proy_orden', 'acr', '1200', 'pendiente','04863609Y', '03-05-21','cont5874521', 'concepto', 'memoria','relacion','01155456L','obseravaciones');
+
+
+/*Tabla Proyectos*/
+INSERT INTO proyecto (acronimo, fecha_cierre, fecha_inicio, ip1, ip2, n_contabilidad, nombre, presupuesto) VALUES('Geckop', '2019-05-20', '2018-10-01', '05464654K', '04863609Y', '1', 'Gestión Economica de Proyectos de Investigación', '0')
+INSERT INTO proyecto (acronimo, fecha_cierre, fecha_inicio, ip1, ip2, n_contabilidad, nombre, presupuesto) VALUES('AT', '2018-06-01', '2018-02-01', '12345678A', '', '2', 'AirsoftTeam', '0')
+INSERT INTO proyecto (acronimo, fecha_cierre, fecha_inicio, ip1, ip2, n_contabilidad, nombre, presupuesto) VALUES('P1', '2019-04-20', '2019-01-01', '01234567A', '12345678A', '3', 'Proyecto1', '10000')
+INSERT INTO proyecto (acronimo, fecha_cierre, fecha_inicio, ip1, ip2, n_contabilidad, nombre, presupuesto) VALUES('P2', '2019-02-20', '2018-11-01', '04863609Y', '', '4', 'Proyecto2', '1000')
+
+/*Tabla de UsuarioProyecto*/
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('Geckop', '05464654K' , 'Miembro del proyecto')
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('Geckop', '04863609Y' , 'Miembro del proyecto')
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('Geckop', '12345678A' , 'Miembro del proyecto')
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('Geckop', '01234567A' , 'Miembro del equipo de trabajo')
+
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('AT', '01234567A' , 'Miembro del proyecto')
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('AT', '05464654K' , 'Miembro del proyecto')
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('AT', '04863609Y' , 'Miembro del proyecto')
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('AT', '12345678A' , 'Profesor Invitado')
+
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('P1', '12345678A' , 'Miembro del proyecto')
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('P1', '01234567A' , 'Miembro del proyecto')
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('P1', '05464654K' , 'Miembro del proyecto')
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('P1', '04863609Y' , 'Profesor Invitado')
+
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('P2', '04863609Y' , 'Miembro del proyecto')
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('P2', '12345678A' , 'Miembro del proyecto')
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('P2', '01234567A' , 'Miembro del proyecto')
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('P2', '05464654K' , 'Miembro del equipo de trabajo')
+
+
+
+

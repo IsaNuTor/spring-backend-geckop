@@ -32,17 +32,13 @@ public class OrdenServiceImplement implements IOrdenService{
 	@Override
 	@Transactional
 	public Orden insertarOrden(Orden orden) {
-		// TODO Auto-generated method stub
-		String id_orden=orden.getAcronimo()+orden.getNumeracion().toString();
-		System.out.println(id_orden);
-		orden.setAcron_id(id_orden);
 		//orden.setAcron_id("proyecto");
 		return ordenDao.save(orden);
 	}
 
 	@Override
 	@Transactional
-	public void eliminarOrden(String acron_id) {
-		ordenDao.delete(acron_id);	
+	public void eliminarOrden(Long id) {
+		ordenDao.delete(id);	
 	}
 }
