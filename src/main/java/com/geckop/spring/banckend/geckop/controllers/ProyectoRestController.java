@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.geckop.spring.banckend.geckop.models.entity.Proyecto;
-import com.geckop.spring.banckend.geckop.models.entity.Usuario;
+import com.geckop.spring.banckend.geckop.models.entity.UsuarioProyecto;
 import com.geckop.spring.banckend.geckop.models.services.IProyectoService;
 
 //Damos acceso a este dominio para que pueda enviar y recibir datos.
@@ -62,5 +62,18 @@ public class ProyectoRestController {
 			return false;
 		}
 	}
+	
+	///////////////////////VISTA PRYECTO
+	//Va a retornar el proyecto convertido en json
+	@GetMapping("/vistaProyectos/verProyecto/{id}")
+	public Proyecto show(@PathVariable String id) {
+		return proyectoService.buscarProyecto(id);
+	}
+	
+	//Va a retornar los investigadores del proyecto convertido en json
+	/*@GetMapping("/vistaProyectos/verProyecto/{id}")
+	public UsuarioProyecto[] getInvestigadoresProyecto(@PathVariable String id) {
+		return proyectoService.getInvestigadoresProyecto(id);
+	}*/
 
 }
