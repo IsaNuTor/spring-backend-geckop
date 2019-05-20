@@ -65,14 +65,14 @@ public class ProyectoRestController {
 	
 	///////////////////////VISTA PRYECTO
 	//Va a retornar el proyecto convertido en json
-	@GetMapping("/vistaProyectos/verProyecto/{id}")
-	public Proyecto show(@PathVariable String id) {
-		return proyectoService.buscarProyecto(id);
+	@GetMapping("/vistaProyectos/verProyecto/{acronimo}")
+	public Proyecto show(@PathVariable String acronimo) {
+		return proyectoService.buscarProyecto(acronimo);
 	}
 	
 	//Va a retornar los investigadores del proyecto convertido en json
 	/*@GetMapping("/vistaProyectos/verProyecto/{id}")
-	public UsuarioProyecto[] getInvestigadoresProyecto(@PathVariable String id) {
+	public List<UsuarioProyecto> getInvestigadoresProyecto(@PathVariable String id) {
 		return proyectoService.getInvestigadoresProyecto(id);
 	}*/
 

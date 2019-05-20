@@ -15,5 +15,5 @@ public interface IProyectoService {
 	
 	public Proyecto buscarProyecto(String id);
 	
-	//public UsuarioProyecto[] getInvestigadoresProyecto(String id);
+	//public List<UsuarioProyecto> getInvestigadoresProyecto(String id);
 }
