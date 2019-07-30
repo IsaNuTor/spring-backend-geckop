@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.geckop.spring.banckend.geckop.models.dao.IProyectoDao;
 import com.geckop.spring.banckend.geckop.models.entity.Proyecto;
+import com.geckop.spring.banckend.geckop.models.entity.UsuarioProyecto;
 
 @Service
 public class ProyectoServiceImplement implements IProyectoService {
@@ -33,5 +34,17 @@ public class ProyectoServiceImplement implements IProyectoService {
 		proyectoDao.delete(acronimo);
 		
 	}
+
+	/*@Override
+	public List<UsuarioProyecto> getInvestigadoresProyecto(String id) {
+		// TODO Auto-generated method stub
+		return proyectoDao.listaInvestigadoresProyecto(id);
+	}*/
+
+	//@Override
+	/*public UsuarioProyecto[] getInvestigadoresProyecto(String id) {
+		// TODO Auto-generated method stub
+		return proyectoDao.listaInvestigadoresProyecto(id);
+	}*/
 
 }
