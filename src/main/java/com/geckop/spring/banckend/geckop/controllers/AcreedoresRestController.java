@@ -53,7 +53,7 @@ public class AcreedoresRestController {
 	@PostMapping("/setAcreedor")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Boolean setAcreedor(@RequestBody Acreedor acreedor) {
-		if(!this.buscarAcreedor(acreedor.getNif())) {
+		if(this.buscarAcreedor(acreedor.getNif())) {
 			return acreedorService.update(acreedor);
 			
 		}else
