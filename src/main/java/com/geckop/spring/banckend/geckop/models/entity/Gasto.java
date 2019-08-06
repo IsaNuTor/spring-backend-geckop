@@ -21,6 +21,8 @@ public class Gasto implements Serializable {
 	private double importe;
 	private String descripcion;
 	private double iva;
+	
+	private String foto;
 
 	public Long getId() {
 		return id;
@@ -72,6 +74,14 @@ public class Gasto implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	/**
