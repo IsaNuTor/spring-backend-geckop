@@ -20,6 +20,7 @@ INSERT INTO usuario (dni, password, nombre, apellido1, apellido2, email, telefon
 
 /*Tabla gasto*/
 INSERT INTO gasto (id_orden, comentarios, importe, descripcion, iva) VALUES('1', 'coment', '25', 'descripcion', '21');
+INSERT INTO gasto (id_orden, comentarios, importe, descripcion, iva) VALUES('2', 'comentario2', '85', 'descripcion2', '21');
 
 /*Tabla tipo gasto*/
 INSERT INTO tipogasto (nombre) VALUES('Viajes');

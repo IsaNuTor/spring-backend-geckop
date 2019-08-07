@@ -1,6 +1,8 @@
 package com.geckop.spring.banckend.geckop.controllers;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -8,7 +10,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,6 +40,8 @@ public class GastoRestController {
 	@Autowired
 	private IGastoService gastoService;
 	
+	private final Logger log = LoggerFactory.getLogger(GastoRestController.class);
+	
 	@GetMapping("/gastos")
 	public List<Gasto> index() {
 		return gastoService.findAll();
@@ -56,6 +65,22 @@ public class GastoRestController {
 	@DeleteMapping("/gastos/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void borrarGasto(@PathVariable Long id) {
+		
+		//Primero eliminamos la foto de la carpeta imagenes asociada a ese gasto
+		Gasto gasto = gastoService.buscarGastoPorId(id);
+		
+		// Si el usuario ya ha subido una foto para ese gasto, tenemos que eliminarla
+		String nombreArchivoAnterior = gasto.getFoto();
+		
+		if(nombreArchivoAnterior !=null && nombreArchivoAnterior.length() > 0) {
+			Path rutaArchivoAnterior = Paths.get("imagenes").resolve(nombreArchivoAnterior).toAbsolutePath();
+			File archivoImagenAnterior = rutaArchivoAnterior.toFile();
+			if(archivoImagenAnterior.exists()) {
+				archivoImagenAnterior.delete();
+			}
+		}
+		
+		// Eliminamos el gasto.
 		gastoService.eliminarGasto(id);
 	}
 	
@@ -67,9 +92,12 @@ public class GastoRestController {
 		Gasto gasto = gastoService.buscarGastoPorId(id);
 		
 		if(!archivo.isEmpty()) {
-			String nombreArchivo = archivo.getOriginalFilename();
-			Path rutaArchivo = Paths.get("img").resolve(nombreArchivo).toAbsolutePath();
+			String nombreArchivo = id.toString() + "_" + archivo.getOriginalFilename().replace(" ", "");
+			Path rutaArchivo = Paths.get("imagenes").resolve(nombreArchivo).toAbsolutePath();
 		
+			// Mostrar por consola del eclipse la ruta del archivo
+			log.info(rutaArchivo.toString());
+			
 			try {
 				Files.copy(archivo.getInputStream(), rutaArchivo);
 			} catch (IOException e) {
@@ -82,10 +110,35 @@ public class GastoRestController {
 			
 			response.put("gasto", gasto);
 			response.put("mensaje", "imagen subida correctamente" + nombreArchivo);
-		}
-		
-		
+	
+		}	
 		
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/imagenes/img/{nombreFoto:.+}")
+	public ResponseEntity<Resource> mostrarFoto(@PathVariable String nombreFoto) {
+		
+		Path rutaArchivo = Paths.get("imagenes").resolve(nombreFoto).toAbsolutePath();
+		
+		// Mostrar por consola del eclipse la ruta del archivo
+		log.info(rutaArchivo.toString());
+		
+		Resource recurso = null;
+		
+		try {
+			recurso = new UrlResource(rutaArchivo.toUri());
+		} catch (MalformedURLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		if(!recurso.exists()) {
+			throw new RuntimeException("No se pudo cargar la imagen" + nombreFoto);
+		}
+		
+		HttpHeaders cabecera = new HttpHeaders();
+		cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename()+"\"");
+		return new ResponseEntity<Resource>(recurso, cabecera, HttpStatus.OK);
 	}
 }
