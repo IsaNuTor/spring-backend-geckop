@@ -1,9 +1,13 @@
 package com.geckop.spring.banckend.geckop.models.services;
 
+import java.util.List;
+
 import com.geckop.spring.banckend.geckop.models.entity.UsuarioProyecto;
 
 public interface IUsuarioProyectoService {
 	
-	public UsuarioProyecto insertarUsuarioProyecto(UsuarioProyecto usuarioProyecto);
+	UsuarioProyecto insertarUsuarioProyecto(UsuarioProyecto usuarioProyecto);
+
+	List<UsuarioProyecto> findByProyect(String p);
 
 }
