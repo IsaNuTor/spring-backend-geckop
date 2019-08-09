@@ -29,9 +29,11 @@ public class UsuarioProyectoRestController {
 	}
 	
 	/*Va a retornar la lista de usuarios en json*/
-	@PostMapping("/buscarusuariosproyecto")
-	public List<UsuarioProyecto> buscarUsuariosProyecto(String p) {
-		return usuarioProyectoService.findByProyect(p);
+	@PostMapping(path="/buscarusuariosproyecto")
+	public List<UsuarioProyecto> buscarUsuariosProyecto(@RequestBody String p) {
+		 List<UsuarioProyecto> u = usuarioProyectoService.findByProyect(p);
+		 return u;
+		//return usuarioProyectoService.findAll();
 	}
 
 }

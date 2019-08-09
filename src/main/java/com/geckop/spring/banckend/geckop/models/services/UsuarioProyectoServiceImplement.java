@@ -26,5 +26,11 @@ public class UsuarioProyectoServiceImplement implements IUsuarioProyectoService 
 		 return (List<UsuarioProyecto>) usuarioProyectoDao.findByProyect(p);
 	}
 
+	@Override
+	public List<UsuarioProyecto> findAll() {
+		// TODO Auto-generated method stub
+		return (List<UsuarioProyecto>) usuarioProyectoDao.findAll();
+	}
+
 	
 }

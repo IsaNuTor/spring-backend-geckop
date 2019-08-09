@@ -9,5 +9,5 @@ public interface IUsuarioProyectoService {
 	UsuarioProyecto insertarUsuarioProyecto(UsuarioProyecto usuarioProyecto);
 
 	List<UsuarioProyecto> findByProyect(String p);
-
+	List<UsuarioProyecto> findAll();
 }
