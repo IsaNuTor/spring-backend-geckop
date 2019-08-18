@@ -19,15 +19,15 @@ INSERT INTO usuario (dni, password, nombre, apellido1, apellido2, email, telefon
 INSERT INTO usuario (dni, password, nombre, apellido1, apellido2, email, telefono, departamento, centro) VALUES('04863609Y', 'passs', 'Aza', 'Fernández', 'Notario', 'aza@ucm.es', '612345678', 'Departamento de sistemas informáticos', 'Facultad de Informática');
 
 /*Tabla gasto*/
-INSERT INTO gasto (id_orden, comentarios, importe, descripcion, iva) VALUES('1', 'coment', '25', 'descripcion', '21');
-INSERT INTO gasto (id_orden, comentarios, importe, descripcion, iva) VALUES('2', 'comentario2', '85', 'descripcion2', '21');
+INSERT INTO gasto (comentarios, importe, descripcion, iva) VALUES('coment', '25', 'descripcion', '21');
+INSERT INTO gasto (comentarios, importe, descripcion, iva) VALUES('comentario2', '85', 'descripcion2', '21');
 
 /*Tabla tipo gasto*/
 INSERT INTO tipogasto (nombre) VALUES('Viajes');
 INSERT INTO tipogasto (nombre) VALUES('Material');
 
 /*Tabla Orden*/
-INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('proy_orden', 'acr', '1200', 'pendiente','04863609Y', '03-05-21','cont5874521', 'concepto', 'memoria','relacion','01155456L','obseravaciones');
+INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('acr', '1200', 'pendiente','04863609Y', '03-05-21','cont5874521', 'concepto', 'memoria','relacion','01155456L','obseravaciones');
 
 
 /*Tabla Proyectos*/
