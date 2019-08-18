@@ -114,6 +114,12 @@ public class UsuarioRestController {
   }
   
   
+  @PostMapping(path="/getNombre")
+  public Usuario getNombre(@RequestBody String dni) {
+	return usuarioService.findById(dni);	   
+  }
+  
+  
   
   /*
   @PostMapping(path="/setPass")
