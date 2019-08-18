@@ -2,14 +2,21 @@ package com.geckop.spring.banckend.geckop.models.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "orden")
@@ -31,6 +38,28 @@ public class Orden implements Serializable {
 	private String num_contabilidad;
 	private String concepto;
 	
+	// Memoria explicativa de los gastos
+	private String memoria;
+
+	// Relacion con el proyecto
+	private String relacion;
+
+	// Pagar a, necestitamos los datos del acreedor
+	private String nif_acreedor;
+
+	@NotNull(message = "No puede estar vacio")
+	private String observaciones;
+	
+	// Cascade sirve para en el caso de que se elimine una orden, elimine los gastos asociados a esa orden.
+	@JsonIgnoreProperties({"orden", "hibernateLazyInitializer", "handler"})
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="orden", cascade=CascadeType.ALL)
+	private List<Gasto> gastos;
+	
+	// Constructor
+	public Orden() {
+		this.gastos = new ArrayList<>();
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -54,19 +83,6 @@ public class Orden implements Serializable {
 	public void setConcepto(String concepto) {
 		this.concepto = concepto;
 	}
-
-	// Memoria explicativa de los gastos
-	private String memoria;
-
-	// Relacion con el proyecto
-	private String relacion;
-
-	// Pagar a, necestitamos los datos del acreedor
-	private String nif_acreedor;
-
-
-	@NotNull(message = "No puede estar vacio")
-	private String observaciones;
 
 	public String getAcronimo() {
 		return acronimo;
@@ -142,6 +158,14 @@ public class Orden implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	public List<Gasto> getGastos() {
+		return gastos;
+	}
+
+	public void setGastos(List<Gasto> gastos) {
+		this.gastos = gastos;
 	}
 
 	/**
