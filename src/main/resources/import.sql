@@ -21,6 +21,7 @@ INSERT INTO usuario (dni, password, nombre, apellido1, apellido2, email, telefon
 /*Tabla gasto*/
 INSERT INTO gasto (comentarios, importe, descripcion, iva) VALUES('coment', '25', 'descripcion', '21');
 INSERT INTO gasto (comentarios, importe, descripcion, iva) VALUES('comentario2', '85', 'descripcion2', '21');
+INSERT INTO gasto (comentarios, importe, descripcion, iva) VALUES('comentario3', '41', 'descripcion3', '21');
 
 /*Tabla tipo gasto*/
 INSERT INTO tipogasto (nombre) VALUES('Viajes');
@@ -28,6 +29,7 @@ INSERT INTO tipogasto (nombre) VALUES('Material');
 
 /*Tabla Orden*/
 INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('acr', '1200', 'pendiente','04863609Y', '03-05-21','cont5874521', 'concepto', 'memoria','relacion','01155456L','obseravaciones');
+INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('acr', '1200', 'pendiente','05464654K', '04-05-21','cont5874521', 'concepto', 'memoria2','relacion2','01155456L','obseravaciones');
 
 
 /*Tabla Proyectos*/

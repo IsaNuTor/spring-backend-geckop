@@ -31,7 +31,6 @@ public class OrdenRestController {
 		return ordenService.findAll();
 	}
 	
-
 	// Buscamos una orden por su acronimo y numeracion
 	public Orden buscarOrden(Orden orden) {
 		return ordenService.buscarOrdenPorAcryNum(orden.getAcronimo(), orden.getNumeracion());
