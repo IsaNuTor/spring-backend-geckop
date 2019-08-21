@@ -25,6 +25,7 @@ public class Gasto implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Orden orden;
 	
+	private String nfactura;
 	private String comentarios;
 	private double importe;
 	private String descripcion;
@@ -74,6 +75,14 @@ public class Gasto implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	public String getnFactura() {
+		return nfactura;
+	}
+
+	public void setnFactura(String nFactura) {
+		this.nfactura = nFactura;
 	}
 
 	public String getFoto() {

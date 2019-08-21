@@ -16,7 +16,5 @@ public interface IOrdenDao extends CrudRepository<Orden, Long>{
 	
 	/*@Query("insert o from Orden o where o.acronimo=?1 and o.numeracion=?2")
 	public Orden findByAcryNum(String acron_id);*/
-	
-	@Query(value = "SELECT * FROM UsuarioProyecto WHERE dni LIKE :p", nativeQuery=true)
-	public List<UsuarioProyecto> findBydni(@Param(value = "p") String p);
+
 }

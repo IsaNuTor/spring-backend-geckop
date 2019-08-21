@@ -31,6 +31,13 @@ public class UsuarioProyectoServiceImplement implements IUsuarioProyectoService 
 		// TODO Auto-generated method stub
 		return (List<UsuarioProyecto>) usuarioProyectoDao.findAll();
 	}
+	
+	// Orden
+	@Override
+	public List<UsuarioProyecto> findBydni(String p) {
+		// TODO Auto-generated method stub
+		return (List<UsuarioProyecto>) usuarioProyectoDao.findByDni(p);
+	}
 
 	
 }

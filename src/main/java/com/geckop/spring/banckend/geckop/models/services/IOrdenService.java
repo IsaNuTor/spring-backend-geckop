@@ -20,7 +20,4 @@ public interface IOrdenService {
 	
 	// Borrar en la tabla. Le pasamos id.
 	public void eliminarOrden(Long id);
-	
-	// Proyectos por dni
-	List<UsuarioProyecto> findBydni(String p);
 }

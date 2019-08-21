@@ -62,12 +62,4 @@ public class OrdenRestController {
 	public void borrarOrden(@PathVariable Long id) {
 		ordenService.eliminarOrden(id);
 	}
-	
-	/*Va a retornar la lista de proyectos del usuario en json*/
-	@PostMapping(path="/buscarproyectosdni")
-	public List<UsuarioProyecto> buscarProyectosDni(@RequestBody String p) {
-		 List<UsuarioProyecto> u = ordenService.findBydni(p);
-		 return u;
-	}
-	
 }

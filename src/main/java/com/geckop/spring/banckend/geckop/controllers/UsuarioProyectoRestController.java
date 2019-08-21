@@ -35,5 +35,12 @@ public class UsuarioProyectoRestController {
 		 return u;
 		//return usuarioProyectoService.findAll();
 	}
+	
+	/*Va a retornar la lista de proyectos del usuario en json para orden*/
+	@PostMapping(path="/buscarproyectosdni")
+	public List<UsuarioProyecto> buscarProyectosDni(@RequestBody String p) {
+		 List<UsuarioProyecto> u = usuarioProyectoService.findBydni(p);
+		 return u;
+	}
 
 }

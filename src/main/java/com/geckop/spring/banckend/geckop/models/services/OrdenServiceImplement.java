@@ -49,10 +49,4 @@ public class OrdenServiceImplement implements IOrdenService{
 	public void eliminarOrden(Long id) {
 		ordenDao.delete(id);	
 	}
-
-	@Override
-	public List<UsuarioProyecto> findBydni(String p) {
-		// TODO Auto-generated method stub
-		return (List<UsuarioProyecto>) ordenDao.findBydni(p);
-	}
 }

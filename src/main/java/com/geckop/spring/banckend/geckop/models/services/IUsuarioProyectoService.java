@@ -10,4 +10,7 @@ public interface IUsuarioProyectoService {
 
 	List<UsuarioProyecto> findByProyect(String p);
 	List<UsuarioProyecto> findAll();
+	
+	// Proyectos por dni para orden
+	List<UsuarioProyecto> findBydni(String p);
 }

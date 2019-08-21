@@ -13,6 +13,9 @@ public interface IUsuarioProyectoDao extends CrudRepository<UsuarioProyecto, Str
 	
 	@Query(value = "SELECT * FROM UsuarioProyecto WHERE acronimo LIKE :p", nativeQuery=true)
 	public List<UsuarioProyecto> findByProyect(@Param(value = "p") String p);
+	
+	@Query(value = "SELECT * FROM UsuarioProyecto WHERE dni LIKE :p", nativeQuery=true)
+	public List<UsuarioProyecto> findByDni(@Param(value = "p") String p);
 
 
 }
