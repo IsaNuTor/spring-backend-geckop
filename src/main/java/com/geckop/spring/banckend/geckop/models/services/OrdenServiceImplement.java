@@ -1,14 +1,11 @@
 package com.geckop.spring.banckend.geckop.models.services;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.geckop.spring.banckend.geckop.models.dao.IOrdenDao;
 import com.geckop.spring.banckend.geckop.models.entity.Orden;
-import com.geckop.spring.banckend.geckop.models.entity.UsuarioProyecto;
 
 @Service
 public class OrdenServiceImplement implements IOrdenService{
@@ -48,5 +45,11 @@ public class OrdenServiceImplement implements IOrdenService{
 	@Transactional
 	public void eliminarOrden(Long id) {
 		ordenDao.delete(id);	
+	}
+
+	@Override
+	public List<Orden> findByNif(String n) {
+		// TODO Auto-generated method stub
+		return (List<Orden>) ordenDao.findByNif(n);
 	}
 }

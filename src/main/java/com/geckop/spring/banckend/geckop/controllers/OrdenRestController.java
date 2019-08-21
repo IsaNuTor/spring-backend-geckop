@@ -62,4 +62,11 @@ public class OrdenRestController {
 	public void borrarOrden(@PathVariable Long id) {
 		ordenService.eliminarOrden(id);
 	}
+	
+	/*Va a retornar la lista de nuestras ordenes*/
+	@PostMapping(path="/buscarordenesnif")
+	public List<Orden> buscarOrdenNif(@RequestBody String n) {
+		 List<Orden> o = ordenService.findByNif(n);
+		 return o;
+	}
 }

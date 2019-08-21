@@ -3,7 +3,6 @@ package com.geckop.spring.banckend.geckop.models.services;
 import java.util.List;
 
 import com.geckop.spring.banckend.geckop.models.entity.Orden;
-import com.geckop.spring.banckend.geckop.models.entity.UsuarioProyecto;
 
 public interface IOrdenService {
 	// Nos devuelve la lista de todas las ordenes que hay guardadas en la tabla orden.
@@ -20,4 +19,7 @@ public interface IOrdenService {
 	
 	// Borrar en la tabla. Le pasamos id.
 	public void eliminarOrden(Long id);
+	
+	// Mis Ordenes
+	List<Orden> findByNif(String n);
 }
