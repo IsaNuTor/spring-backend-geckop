@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.geckop.spring.banckend.geckop.models.entity.Orden;
+import com.geckop.spring.banckend.geckop.models.entity.UsuarioProyecto;
 import com.geckop.spring.banckend.geckop.models.services.IOrdenService;
 
 
@@ -31,6 +31,12 @@ public class OrdenRestController {
 		return ordenService.findAll();
 	}
 	
+	//Va a retornar la orden convertida en json
+	@GetMapping("/ordenes/{id}")
+	public Orden show(@PathVariable Long id) {
+		return ordenService.buscarOrdenPorId(id);
+	}
+		
 	// Buscamos una orden por su acronimo y numeracion
 	public Orden buscarOrden(Orden orden) {
 		return ordenService.buscarOrdenPorAcryNum(orden.getAcronimo(), orden.getNumeracion());
@@ -55,6 +61,13 @@ public class OrdenRestController {
 	@DeleteMapping("/ordenes/{id}")
 	public void borrarOrden(@PathVariable Long id) {
 		ordenService.eliminarOrden(id);
+	}
+	
+	/*Va a retornar la lista de proyectos del usuario en json*/
+	@PostMapping(path="/buscarproyectosdni")
+	public List<UsuarioProyecto> buscarProyectosDni(@RequestBody String p) {
+		 List<UsuarioProyecto> u = ordenService.findBydni(p);
+		 return u;
 	}
 	
 }
