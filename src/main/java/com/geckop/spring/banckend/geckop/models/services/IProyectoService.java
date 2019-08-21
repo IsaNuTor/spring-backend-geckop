@@ -14,6 +14,8 @@ public interface IProyectoService {
 	public void borrarProyecto(String acronimo);
 	
 	public Proyecto buscarProyecto(String id);
+
+	public Proyecto updateProyecto(Proyecto p);
 	
 	//public List<UsuarioProyecto> getInvestigadoresProyecto(String id);
 }

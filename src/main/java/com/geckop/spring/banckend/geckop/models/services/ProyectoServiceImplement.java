@@ -34,6 +34,17 @@ public class ProyectoServiceImplement implements IProyectoService {
 		proyectoDao.delete(acronimo);
 		
 	}
+	
+	@Override
+	public Proyecto updateProyecto(Proyecto p) {
+		if(this.buscarProyecto(p.getAcronimo()) != null) {
+			return proyectoDao.save(p);
+		}else{
+			return null;
+		}
+	}
+	
+	
 
 	/*@Override
 	public List<UsuarioProyecto> getInvestigadoresProyecto(String id) {

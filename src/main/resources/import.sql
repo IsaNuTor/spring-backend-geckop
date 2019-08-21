@@ -45,8 +45,6 @@ INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('Geckop', '12345678A' ,
 INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('Geckop', '01234567A' , 'Miembro del equipo de trabajo')
 
 INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('AT', '01234567A' , 'Miembro del proyecto')
-INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('AT', '05464654K' , 'Miembro del proyecto')
-INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('AT', '04863609Y' , 'Miembro del proyecto')
 INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('AT', '12345678A' , 'Profesor Invitado')
 
 INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('P1', '12345678A' , 'Miembro del proyecto')

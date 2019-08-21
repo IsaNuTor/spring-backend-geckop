@@ -34,6 +34,14 @@ public class ProyectoRestController {
 			return null;
 	}
 	 
+ @PostMapping(path="/actualizarProyecto")
+	public Proyecto actualizarProyecto(@RequestBody Proyecto proyecto) {
+		if(this.buscarProyecto(proyecto.getAcronimo()) )
+			return proyectoService.updateProyecto(proyecto);
+		else
+			return null;
+	}
+	 
 	 /*Va a retornar la lista de usuarios en json*/
 	@GetMapping("/proyecto")
 	public List<Proyecto> index() {
