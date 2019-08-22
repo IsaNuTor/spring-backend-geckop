@@ -1,12 +1,13 @@
 package com.geckop.spring.banckend.geckop.models.dao;
 
 import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import com.geckop.spring.banckend.geckop.models.entity.Orden;
 
-public interface IOrdenDao extends CrudRepository<Orden, Long>{
+public interface IOrdenDao extends JpaRepository<Orden, Long>{
 
 	@Query("select o from Orden o where o.acronimo=?1 and o.numeracion=?2")
 	public Orden findByAcryNum(String acronimo, Long numeracion);

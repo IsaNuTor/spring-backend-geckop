@@ -2,11 +2,17 @@ package com.geckop.spring.banckend.geckop.models.services;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.geckop.spring.banckend.geckop.models.entity.Orden;
 
 public interface IOrdenService {
 	// Nos devuelve la lista de todas las ordenes que hay guardadas en la tabla orden.
 	public List<Orden> findAll();
+	
+	// Paginación
+	public Page<Orden> findAll(Pageable pageable);
 	
 	// Buscar una orden por id, nos devuelve la orden.
 	public Orden buscarOrdenPorId(Long id);
