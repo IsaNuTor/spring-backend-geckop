@@ -44,13 +44,11 @@ public class ProyectoServiceImplement implements IProyectoService {
 		}
 	}
 	
-	
-
-	/*@Override
-	public List<UsuarioProyecto> getInvestigadoresProyecto(String id) {
+	@Override
+	public List<Proyecto> getProyectosUsuario(String dni) {
 		// TODO Auto-generated method stub
-		return proyectoDao.listaInvestigadoresProyecto(id);
-	}*/
+		return proyectoDao.getProyectosUsuario(dni);
+	}
 
 	//@Override
 	/*public UsuarioProyecto[] getInvestigadoresProyecto(String id) {

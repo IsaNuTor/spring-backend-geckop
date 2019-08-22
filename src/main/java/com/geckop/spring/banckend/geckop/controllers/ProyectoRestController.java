@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.geckop.spring.banckend.geckop.models.entity.Proyecto;
-import com.geckop.spring.banckend.geckop.models.entity.UsuarioProyecto;
 import com.geckop.spring.banckend.geckop.models.services.IProyectoService;
 
 //Damos acceso a este dominio para que pueda enviar y recibir datos.
@@ -34,7 +33,7 @@ public class ProyectoRestController {
 			return null;
 	}
 	 
- @PostMapping(path="/actualizarProyecto")
+	 @PostMapping(path="/actualizarProyecto")
 	public Proyecto actualizarProyecto(@RequestBody Proyecto proyecto) {
 		if(this.buscarProyecto(proyecto.getAcronimo()) )
 			return proyectoService.updateProyecto(proyecto);
@@ -42,7 +41,7 @@ public class ProyectoRestController {
 			return null;
 	}
 	 
-	 /*Va a retornar la lista de usuarios en json*/
+	 /*Va a retornar la lista de proyectos*/
 	@GetMapping("/proyecto")
 	public List<Proyecto> index() {
 		return proyectoService.findAll();
@@ -78,10 +77,10 @@ public class ProyectoRestController {
 		return proyectoService.buscarProyecto(acronimo);
 	}
 	
-	//Va a retornar los investigadores del proyecto convertido en json
-	/*@GetMapping("/vistaProyectos/verProyecto/{id}")
-	public List<UsuarioProyecto> getInvestigadoresProyecto(@PathVariable String id) {
-		return proyectoService.getInvestigadoresProyecto(id);
-	}*/
+	//Va a retornar los proyectos en los que participa un investigador
+	@PostMapping(path="/proyectosUsuario")
+	public List<Proyecto> getProyectosUsuario(@RequestBody String dni) {
+		return proyectoService.getProyectosUsuario(dni);
+	}
 
 }

@@ -17,5 +17,5 @@ public interface IProyectoService {
 
 	public Proyecto updateProyecto(Proyecto p);
 	
-	//public List<UsuarioProyecto> getInvestigadoresProyecto(String id);
+	public List<Proyecto> getProyectosUsuario(String dni);
 }

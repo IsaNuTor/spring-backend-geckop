@@ -4,17 +4,15 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-
-import com.geckop.spring.banckend.geckop.models.entity.Cliente;
+import org.springframework.data.repository.query.Param;
 import com.geckop.spring.banckend.geckop.models.entity.Proyecto;
-import com.geckop.spring.banckend.geckop.models.entity.UsuarioProyecto;
 
 public interface IProyectoDao extends CrudRepository<Proyecto, String>{
 
 	
 	//SELECT * FROM db_geckop_backend.usuarioproyecto where acronimo="AT";
-	/*@Query("select u from usuarioproyecto u where acronimo=?1")
-	public List<UsuarioProyecto> listaInvestigadoresProyecto(String acronimo);*/
+	@Query(value ="SELECT * FROM proyecto as p where p.acronimo in (select u.acronimo from usuarioproyecto as u where u.dni= :d )", nativeQuery=true)
+	public List<Proyecto> getProyectosUsuario(@Param(value = "d")String dni);
 	
 	/*@Query("select u from UsuarioProyecto u")
 	public List<UsuarioProyecto> listaInvestigadoresProyecto(String acronimo);*/
