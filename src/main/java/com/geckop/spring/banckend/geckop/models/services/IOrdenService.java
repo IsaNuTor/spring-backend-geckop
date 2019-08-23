@@ -14,6 +14,9 @@ public interface IOrdenService {
 	// Paginación
 	public Page<Orden> findAll(Pageable pageable);
 	
+	// Paginacion con consulta
+	//public Page<Orden> findByNifPage(String n, Pageable pageable);
+	
 	// Buscar una orden por id, nos devuelve la orden.
 	public Orden buscarOrdenPorId(Long id);
 	

@@ -40,6 +40,14 @@ public class OrdenRestController {
 		return ordenService.findAll(pagina);
 	}
 	
+	/*Va a retornar la lista de nuestras ordenes*/
+	/*@PostMapping(path="/buscarordenesnif/pag/{pag}")
+	public Page<Orden> buscarOrdenNifPage(@RequestBody String n, @RequestBody Integer pag) {
+		 Pageable pagina = new PageRequest(pag, 5);
+		 Page<Orden> o = ordenService.findByNifPage(n, pagina);
+		 return o;
+	}*/
+	
 	//Va a retornar la orden convertida en json
 	@GetMapping("/ordenes/{id}")
 	public Orden show(@PathVariable Long id) {
