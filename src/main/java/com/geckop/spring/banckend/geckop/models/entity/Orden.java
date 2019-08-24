@@ -2,21 +2,21 @@ package com.geckop.spring.banckend.geckop.models.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
-import javax.persistence.CascadeType;
+//import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+//import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+//import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "orden")
@@ -51,13 +51,13 @@ public class Orden implements Serializable {
 	private String observaciones;
 	
 	// Cascade sirve para en el caso de que se elimine una orden, elimine los gastos asociados a esa orden.
-	@JsonIgnoreProperties({"orden", "hibernateLazyInitializer", "handler"})
+	/*@JsonIgnoreProperties({"orden", "hibernateLazyInitializer", "handler"})
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="orden", cascade=CascadeType.ALL)
-	private List<Gasto> gastos;
+	private List<Gasto> gastos;*/
 	
 	// Constructor
 	public Orden() {
-		this.gastos = new ArrayList<>();
+		//this.gastos = new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -160,13 +160,13 @@ public class Orden implements Serializable {
 		return serialVersionUID;
 	}
 	
-	public List<Gasto> getGastos() {
+	/*public List<Gasto> getGastos() {
 		return gastos;
 	}
 
 	public void setGastos(List<Gasto> gastos) {
 		this.gastos = gastos;
-	}
+	}*/
 
 	/**
 	 * 

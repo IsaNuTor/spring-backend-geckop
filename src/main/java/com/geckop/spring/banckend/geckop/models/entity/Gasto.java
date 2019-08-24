@@ -3,14 +3,14 @@ package com.geckop.spring.banckend.geckop.models.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+//import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+//import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "gasto")
@@ -20,13 +20,13 @@ public class Gasto implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
-	//@JoinColumn(name="orden_id") Por defecto será esta, no hace falta ponerla
+	/*//@JoinColumn(name="orden_id") Por defecto será esta, no hace falta ponerla
 	@JsonIgnoreProperties({"gastos", "hibernateLazyInitializer", "handler"})
 	@ManyToOne(fetch=FetchType.LAZY)
-	private Orden orden;
+	private Orden orden;*/
 	
+	private Long id_orden; 
 	private String nfactura;
-	private String comentarios;
 	private double importe;
 	private String descripcion;
 	private double iva;
@@ -39,14 +39,6 @@ public class Gasto implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getComentarios() {
-		return comentarios;
-	}
-
-	public void setComentarios(String comentarios) {
-		this.comentarios = comentarios;
 	}
 
 	public double getImporte() {
@@ -72,9 +64,13 @@ public class Gasto implements Serializable {
 	public void setIva(double iva) {
 		this.iva = iva;
 	}
+	
+	public Long getId_orden() {
+		return id_orden;
+	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setId_orden(Long id_orden) {
+		this.id_orden = id_orden;
 	}
 	
 	public String getnFactura() {
@@ -97,5 +93,8 @@ public class Gasto implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

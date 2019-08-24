@@ -19,9 +19,9 @@ INSERT INTO usuario (dni, password, nombre, apellido1, apellido2, email, telefon
 INSERT INTO usuario (dni, password, nombre, apellido1, apellido2, email, telefono, departamento, centro) VALUES('04863609Y', 'passs', 'Aza', 'Fernández', 'Notario', 'aza@ucm.es', '612345678', 'Departamento de sistemas informáticos', 'Facultad de Informática');
 
 /*Tabla gasto*/
-INSERT INTO gasto (nfactura, comentarios, importe, descripcion, iva) VALUES('111111', 'coment', '25', 'descripcion', '21');
-INSERT INTO gasto (nfactura, comentarios, importe, descripcion, iva) VALUES('222222', 'comentario2', '85', 'descripcion2', '21');
-INSERT INTO gasto (nfactura, comentarios, importe, descripcion, iva) VALUES('333333', 'comentario3', '41', 'descripcion3', '21');
+INSERT INTO gasto (id_orden, nfactura, importe, descripcion, iva) VALUES('1', '111111', '25', 'descripcion', '21');
+INSERT INTO gasto (id_orden, nfactura, importe, descripcion, iva) VALUES('1', '222222', '85', 'descripcion2', '21');
+INSERT INTO gasto (id_orden, nfactura, importe, descripcion, iva) VALUES('2', '333333', '41', 'descripcion3', '21');
 
 /*Tabla tipo gasto*/
 INSERT INTO tipogasto (nombre) VALUES('Viajes');
