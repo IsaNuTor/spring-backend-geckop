@@ -28,8 +28,20 @@ INSERT INTO tipogasto (nombre) VALUES('Viajes');
 INSERT INTO tipogasto (nombre) VALUES('Material');
 
 /*Tabla Orden*/
-INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('acr', '1200', 'pendiente','04863609Y', '03-05-21','cont5874521', 'concepto', 'memoria','relacion','01155456L','obseravaciones');
-INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('acr', '1200', 'pendiente','05464654K', '04-05-21','cont5874521', 'concepto', 'memoria2','relacion2','01155456L','obseravaciones');
+
+
+INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('acr', '1', 'A','04863609Y', '03-05-21','cont5874521', 'concepto', 'memoria','relacion','01155456L','obseravaciones');
+INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('acr', '2', 'A','05464654K', '04-05-21','cont5874521', 'concepto', 'memoria2','relacion2','01155456L','obseravaciones');
+INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('acr', '3', 'A','04863609Y', '03-05-21','cont5874521', 'concepto', 'memoria','relacion','01155456L','obseravaciones');
+INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('acr', '4', 'R','05464654K', '04-05-21','cont5874521', 'concepto', 'memoria2','relacion2','01155456L','obseravaciones');
+INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('acr', '5', 'R','04863609Y', '03-05-21','cont5874521', 'concepto', 'memoria','relacion','01155456L','obseravaciones');
+INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('acr', '6', 'R','05464654K', '04-05-21','cont5874521', 'concepto', 'memoria2','relacion2','01155456L','obseravaciones');
+INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('acr', '7', 'PM','04863609Y', '03-05-21','cont5874521', 'concepto', 'memoria','relacion','01155456L','obseravaciones');
+INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('acr', '8', 'PM','05464654K', '04-05-21','cont5874521', 'concepto', 'memoria2','relacion2','01155456L','obseravaciones');
+INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('acr', '9', 'PM','04863609Y', '03-05-21','cont5874521', 'concepto', 'memoria','relacion','01155456L','obseravaciones');
+INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('acr', '10', 'P','05464654K', '04-05-21','cont5874521', 'concepto', 'memoria2','relacion2','01155456L','obseravaciones');
+INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('acr', '11', 'P','04863609Y', '03-05-21','cont5874521', 'concepto', 'memoria','relacion','01155456L','obseravaciones');
+INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones) VALUES('acr', '12', 'P','05464654K', '04-05-21','cont5874521', 'concepto', 'memoria2','relacion2','01155456L','obseravaciones');
 
 
 /*Tabla Proyectos*/
