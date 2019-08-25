@@ -14,7 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 //import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+//import javax.validation.constraints.NotNull;
+
 
 //import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -32,9 +35,10 @@ public class Orden implements Serializable {
 	private String estado;
 	private String nif_user;
 
-	@NotNull(message = "No puede estar vacio")
+	//@NotNull(message = "No puede estar vacio")
 	@Column(name = "fecha_orden")
 	private Date fechaOrden;
+	
 	private String num_contabilidad;
 	private String concepto;
 	
@@ -47,7 +51,7 @@ public class Orden implements Serializable {
 	// Pagar a, necestitamos los datos del acreedor
 	private String nif_acreedor;
 
-	@NotNull(message = "No puede estar vacio")
+	//@NotNull(message = "No puede estar vacio")
 	private String observaciones;
 	
 	// Cascade sirve para en el caso de que se elimine una orden, elimine los gastos asociados a esa orden.
