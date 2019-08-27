@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.geckop.spring.banckend.geckop.models.entity.Acreedor;
 import com.geckop.spring.banckend.geckop.models.entity.Gasto;
 import com.geckop.spring.banckend.geckop.models.services.IGastoService;
 
@@ -84,6 +86,33 @@ public class GastoRestController {
 		gastoService.eliminarGasto(id);
 	}
 	
+	@PostMapping("/setGasto")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Boolean setGasto(@RequestBody Gasto gasto) {
+		
+		System.out.println(gasto.getId());
+		System.out.println(gasto.getId_orden());
+		System.out.println(gasto.getFoto());
+		
+		Gasto g = gastoService.buscarGastoPorId(gasto.getId());
+		g.setId_orden(gasto.getId_orden());
+		
+		return gastoService.update(g);
+	}
+	
+	// Actualizar id_orden del gasto
+	/*@PutMapping("/gastos/update")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Boolean subirIdOrden(@RequestBody Gasto gasto, @PathVariable Long id) {
+		// Primero tenemos que obtener el acreedor de la base de datos.
+		Gasto gastoActual = gastoService.buscarGastoPorId(id);
+		
+		// Al gasto de la base de datos, ponemos los datos que nos vienen.
+		gastoActual.setId_orden(gasto.getId_orden());
+
+		return gastoService.update(gastoActual);
+	}*/
+			
 	// Subida de la imagen
 	@PostMapping("/gastos/subirImagen")
 	public ResponseEntity<?> subirImagen(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") Long id) {

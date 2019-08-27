@@ -41,4 +41,10 @@ public class GastoServiceImplement implements IGastoService{
 	public void eliminarGasto(Long id) {
 		gastoDao.delete(id);
 	}
+
+	@Override
+	public Boolean update(Gasto gasto) {
+		// TODO Auto-generated method stub
+		return gastoDao.save(gasto) != null;
+	}
 }
