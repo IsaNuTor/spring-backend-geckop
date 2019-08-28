@@ -70,4 +70,10 @@ public class OrdenServiceImplement implements IOrdenService{
 		// TODO Auto-generated method stub
 		return (List<Orden>) ordenDao.findByNif(n);
 	}
+
+	@Override
+	public Long buscarNumeracionSiguiente(String a) {
+		// TODO Auto-generated method stub
+		return (Long) ordenDao.findNumeracionSiguiente(a);
+	}
 }

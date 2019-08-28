@@ -86,4 +86,11 @@ public class OrdenRestController {
 		 List<Orden> o = ordenService.findByNif(n);
 		 return o;
 	}
+	
+	/*Nos retorna la numeracion siguiente dependiendo del proyecto que seleccionemos para la orden*/
+	@PostMapping(path="/buscarnumacronimo")
+	public Long buscarNumeracionSiguiente(@RequestBody String a) {
+		Long num = ordenService.buscarNumeracionSiguiente(a);
+		return num;
+	}
 }

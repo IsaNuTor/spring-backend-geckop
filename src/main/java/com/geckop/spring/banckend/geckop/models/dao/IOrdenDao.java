@@ -2,8 +2,6 @@ package com.geckop.spring.banckend.geckop.models.dao;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,7 +19,7 @@ public interface IOrdenDao extends JpaRepository<Orden, Long>{
 	@Query(value = "SELECT * FROM Orden WHERE nif_user LIKE :n", nativeQuery=true)
 	public List<Orden> findByNif(@Param(value = "n") String n);
 
-	// Seleccionar las ordenes que realizamos.
-	/*@Query(value = "SELECT * FROM Orden WHERE nif_user LIKE :n", nativeQuery=true)
-	public List<Orden> findByNifPage(@Param(value = "n") String n);*/
+	// Seleccionar la numeracion siguiente respecto al proyecto.
+	@Query(value = "SELECT max(id)+1 FROM Orden WHERE acronimo LIKE :a", nativeQuery=true)
+	public Long findNumeracionSiguiente(@Param(value = "a") String a);
 }

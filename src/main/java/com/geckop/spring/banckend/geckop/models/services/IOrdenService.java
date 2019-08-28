@@ -31,4 +31,7 @@ public interface IOrdenService {
 	
 	// Mis Ordenes
 	List<Orden> findByNif(String n);
+	
+	// Buscar numeracion siguiente del proyecto que hemos seleccionado en la orden.
+	Long buscarNumeracionSiguiente(String a);
 }
