@@ -29,15 +29,6 @@ public class OrdenServiceImplement implements IOrdenService{
 		return ordenDao.findAll(pageable);
 	}
 	
-	/*@SuppressWarnings("unchecked")
-	@Override
-	public Page<Orden> findByNifPage(String n, Pageable pageable) {
-		// TODO Auto-generated method stub
-		Page<Orden> ordenes = (Page<Orden>) ordenDao.findByNifPage(n);
-		
-		return ordenes;
-	}*/
-	
 	@Override
 	@Transactional(readOnly=true)
 	public Orden buscarOrdenPorId(Long id) {
@@ -72,8 +63,13 @@ public class OrdenServiceImplement implements IOrdenService{
 	}
 
 	@Override
+<<<<<<< HEAD
 	public Long buscarNumeracionSiguiente(String a) {
 		// TODO Auto-generated method stub
 		return (Long) ordenDao.findNumeracionSiguiente(a);
+=======
+	public List<Orden> getOrdenesPendientesDeFirmaDeIP(String ip) {
+		return (List<Orden>) ordenDao.getOrdenesPendientesDeFirmaDeIP(ip);
+>>>>>>> refs/remotes/origin/master
 	}
 }
