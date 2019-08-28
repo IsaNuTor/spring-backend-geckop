@@ -40,14 +40,6 @@ public class OrdenRestController {
 		return ordenService.findAll(pagina);
 	}
 	
-	/*Va a retornar la lista de nuestras ordenes*/
-	/*@PostMapping(path="/buscarordenesnif/pag/{pag}")
-	public Page<Orden> buscarOrdenNifPage(@RequestBody String n, @RequestBody Integer pag) {
-		 Pageable pagina = new PageRequest(pag, 5);
-		 Page<Orden> o = ordenService.findByNifPage(n, pagina);
-		 return o;
-	}*/
-	
 	//Va a retornar la orden convertida en json
 	@GetMapping("/ordenes/{id}")
 	public Orden show(@PathVariable Long id) {
@@ -58,13 +50,7 @@ public class OrdenRestController {
 	public Orden buscarOrden(Orden orden) {
 		return ordenService.buscarOrdenPorAcryNum(orden.getAcronimo(), orden.getNumeracion());
 	}
-	
-	/*//POSTMAN-http://localhost:8080/api/ordenes/acr/1200
-	@GetMapping("/ordenes/{acronimo}/{numeracion}")
-	public Orden buscarOrden(@PathVariable String acronimo, @PathVariable Long numeracion) {
 
-		return ordenService.buscarOrdenPorAcryNum(acronimo, numeracion);
-	}*/
 	
 	// Crea una orden
 	@PostMapping("/ordenes")
@@ -86,4 +72,19 @@ public class OrdenRestController {
 		 List<Orden> o = ordenService.findByNif(n);
 		 return o;
 	}
+	
+	
+	@PostMapping(path="/ordenesdeip")
+	List<Orden> getOrdenesPendientesDeFirmaDeIP(@RequestBody String ip){
+		 List<Orden> o = ordenService.getOrdenesPendientesDeFirmaDeIP(ip);
+		 return o;
+	}
+	
+	@PostMapping(path="/getordenid")
+	Orden getOrdenID(@RequestBody Long id){
+		 Orden o = ordenService.buscarOrdenPorId(id);
+		 return o;
+	}
+	
+	
 }

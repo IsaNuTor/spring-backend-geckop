@@ -21,7 +21,8 @@ public interface IOrdenDao extends JpaRepository<Orden, Long>{
 	@Query(value = "SELECT * FROM Orden WHERE nif_user LIKE :n", nativeQuery=true)
 	public List<Orden> findByNif(@Param(value = "n") String n);
 
-	// Seleccionar las ordenes que realizamos.
-	/*@Query(value = "SELECT * FROM Orden WHERE nif_user LIKE :n", nativeQuery=true)
-	public List<Orden> findByNifPage(@Param(value = "n") String n);*/
+	@Query(value = "SELECT * FROM Orden WHERE estado = 'P' AND acronimo IN (SELECT acronimo FROM proyecto WHERE proyecto.ip1 = :ip OR proyecto.ip2 = :ip)", nativeQuery=true)
+	public List<Orden> getOrdenesPendientesDeFirmaDeIP(@Param(value = "ip") String ip);
 }
+
+
