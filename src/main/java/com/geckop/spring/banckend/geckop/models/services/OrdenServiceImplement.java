@@ -63,13 +63,12 @@ public class OrdenServiceImplement implements IOrdenService{
 	}
 
 	@Override
-<<<<<<< HEAD
 	public Long buscarNumeracionSiguiente(String a) {
 		// TODO Auto-generated method stub
 		return (Long) ordenDao.findNumeracionSiguiente(a);
-=======
+	}
 	public List<Orden> getOrdenesPendientesDeFirmaDeIP(String ip) {
 		return (List<Orden>) ordenDao.getOrdenesPendientesDeFirmaDeIP(ip);
->>>>>>> refs/remotes/origin/master
+
 	}
 }

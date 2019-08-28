@@ -32,13 +32,13 @@ public interface IOrdenService {
 	
 	// Mis Ordenes
 	List<Orden> findByNif(String n);
-<<<<<<< HEAD
+
 	
 	// Buscar numeracion siguiente del proyecto que hemos seleccionado en la orden.
 	Long buscarNumeracionSiguiente(String a);
-=======
+
 
 	//Oredenes pendientes de firma de ip 
 	List<Orden> getOrdenesPendientesDeFirmaDeIP(String ip);
->>>>>>> refs/remotes/origin/master
+
 }

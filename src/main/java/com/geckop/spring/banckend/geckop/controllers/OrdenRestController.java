@@ -73,14 +73,14 @@ public class OrdenRestController {
 		 return o;
 	}
 	
-<<<<<<< HEAD
+
 	/*Nos retorna la numeracion siguiente dependiendo del proyecto que seleccionemos para la orden*/
 	@PostMapping(path="/buscarnumacronimo")
 	public Long buscarNumeracionSiguiente(@RequestBody String a) {
 		Long num = ordenService.buscarNumeracionSiguiente(a);
 		return num;
 	}
-=======
+
 	
 	@PostMapping(path="/ordenesdeip")
 	List<Orden> getOrdenesPendientesDeFirmaDeIP(@RequestBody String ip){
@@ -94,6 +94,4 @@ public class OrdenRestController {
 		 return o;
 	}
 	
-	
->>>>>>> refs/remotes/origin/master
 }
