@@ -20,7 +20,7 @@ public interface IOrdenDao extends JpaRepository<Orden, Long>{
 	public List<Orden> findByNif(@Param(value = "n") String n);
 
 	// Seleccionar la numeracion siguiente respecto al proyecto.
-	@Query(value = "SELECT max(id)+1 FROM Orden WHERE acronimo LIKE :a", nativeQuery=true)
+	@Query(value = "SELECT COUNT(ID)+1 FROM Orden WHERE acronimo LIKE :a", nativeQuery=true)
 	public Long findNumeracionSiguiente(@Param(value = "a") String a);
 
 	@Query(value = "SELECT * FROM Orden WHERE estado = 'P' AND acronimo IN (SELECT acronimo FROM proyecto WHERE proyecto.ip1 = :ip OR proyecto.ip2 = :ip)", nativeQuery=true)
