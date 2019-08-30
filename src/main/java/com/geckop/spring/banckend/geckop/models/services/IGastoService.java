@@ -18,5 +18,6 @@ public interface IGastoService {
 	// Borrar en la tabla. Le pasamos el id del gasto que vamos a eliminar de la tabla.
 	public void eliminarGasto(Long id);
 	
+	// Actualizar la id_orden, para saber de que orden es el gasto.
 	public Boolean update(Gasto gasto);
 }
