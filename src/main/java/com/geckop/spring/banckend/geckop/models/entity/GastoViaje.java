@@ -39,8 +39,6 @@ public class GastoViaje implements Serializable {
 	private String fotoAvion;
 	
 	/*Coche*/
-	private String coche;
-	
 	private double nkilometros;
 	@Column(name="precio_kilometro")
 	private double precioKilometro;
@@ -85,9 +83,6 @@ public class GastoViaje implements Serializable {
 	private String fotoOtros;
 	
 	/*Hotel*/
-	@Column(name="n_fac_hotel")
-	private String nFacturaHotel;
-	
 	@Column(name="importe_hotel")
 	private double importeHotel;
 	
@@ -105,11 +100,11 @@ public class GastoViaje implements Serializable {
 	private double importeDietas;
 	
 	/*Otros gastos*/
-	@Column(name="otros_gastos")
-	private String otrosGastos;
-	
 	@Column(name="importe_otros_gastos")
 	private double importeOtrosGastos;
+	
+	@Column(name="foto_otros_gastos")
+	private String fotoOtrosGastos;
 	
 	/*Importe total, la suma de todos los importes anteriores*/
 	@Column(name="importe_total")
@@ -175,14 +170,6 @@ public class GastoViaje implements Serializable {
 
 	public void setFotoAvion(String fotoAvion) {
 		this.fotoAvion = fotoAvion;
-	}
-
-	public String getCoche() {
-		return coche;
-	}
-
-	public void setCoche(String coche) {
-		this.coche = coche;
 	}
 
 	public double getNkilometros() {
@@ -312,15 +299,7 @@ public class GastoViaje implements Serializable {
 	public void setFotoOtros(String fotoOtros) {
 		this.fotoOtros = fotoOtros;
 	}
-
-	public String getnFacturaHotel() {
-		return nFacturaHotel;
-	}
-
-	public void setnFacturaHotel(String nFacturaHotel) {
-		this.nFacturaHotel = nFacturaHotel;
-	}
-
+	
 	public double getImporteHotel() {
 		return importeHotel;
 	}
@@ -361,20 +340,20 @@ public class GastoViaje implements Serializable {
 		this.importeDietas = importeDietas;
 	}
 
-	public String getOtrosGastos() {
-		return otrosGastos;
-	}
-
-	public void setOtrosGastos(String otrosGastos) {
-		this.otrosGastos = otrosGastos;
-	}
-
 	public double getImporteOtrosGastos() {
 		return importeOtrosGastos;
 	}
 
 	public void setImporteOtrosGastos(double importeOtrosGastos) {
 		this.importeOtrosGastos = importeOtrosGastos;
+	}
+	
+	public String getFotoOtrosGastos() {
+		return fotoOtrosGastos;
+	}
+
+	public void setFotoOtrosGastos(String fotoOtrosGastos) {
+		this.fotoOtrosGastos = fotoOtrosGastos;
 	}
 
 	public double getImporteTotal() {
