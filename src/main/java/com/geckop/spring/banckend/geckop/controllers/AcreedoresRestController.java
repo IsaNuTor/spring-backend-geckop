@@ -84,7 +84,6 @@ public class AcreedoresRestController {
 		acreedorService.eliminarAcreedor(nif);
 	}
 	
-	
 	public boolean buscarAcreedor(String nif) {
 		try {
 			if(acreedorService.buscarAcreedorPorNif(nif) != null)

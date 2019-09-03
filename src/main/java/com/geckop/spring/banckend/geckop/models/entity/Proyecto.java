@@ -74,7 +74,7 @@ public class Proyecto implements Serializable {
 		this.ip1 = ip1;
 	}
 
-	public String getDniIp2() {
+	public String getIp2() {
 		return ip2;
 	}
 

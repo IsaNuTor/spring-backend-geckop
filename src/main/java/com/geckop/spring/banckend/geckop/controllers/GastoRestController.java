@@ -169,4 +169,9 @@ public class GastoRestController {
 		cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename()+"\"");
 		return new ResponseEntity<Resource>(recurso, cabecera, HttpStatus.OK);
 	}
+	
+	@PostMapping(path="/gastos/byidorden")
+	public List<Gasto> findByIdOrden(@RequestBody Long id_o){
+		return gastoService.findByIdOrden(id_o);
+	}
 }

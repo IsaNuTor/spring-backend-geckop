@@ -47,4 +47,10 @@ public class GastoServiceImplement implements IGastoService{
 		// TODO Auto-generated method stub
 		return gastoDao.save(gasto) != null;
 	}
+
+	@Override
+	public List<Gasto> findByIdOrden(Long id_o) {
+		// TODO Auto-generated method stub
+		return gastoDao.findByIdOrden(id_o);
+	}
 }

@@ -2,6 +2,8 @@ package com.geckop.spring.banckend.geckop.models.services;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+
 import com.geckop.spring.banckend.geckop.models.entity.Gasto;
 
 public interface IGastoService {
@@ -20,4 +22,7 @@ public interface IGastoService {
 	
 	// Actualizar la id_orden, para saber de que orden es el gasto.
 	public Boolean update(Gasto gasto);
+	
+	//Devuelve los gastos generales de una orden
+	public List<Gasto> findByIdOrden(Long id_o);
 }
