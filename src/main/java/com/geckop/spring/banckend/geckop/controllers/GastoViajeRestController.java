@@ -142,8 +142,8 @@ public class GastoViajeRestController {
 		}	
 		
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
-	}
-*/
+	}*/
+
 	@GetMapping("/imagenes/viajes/{nombreFoto:.+}")
 	public ResponseEntity<Resource> mostrarFoto(@PathVariable String nombreFoto) {
 		
