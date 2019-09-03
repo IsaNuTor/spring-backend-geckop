@@ -34,6 +34,10 @@ public class Orden implements Serializable {
 	private Long numeracion;
 	private String estado;
 	private String nif_user;
+	private String tipo;
+	private String nif_IP;
+	private String iban;
+	
 
 	//@NotNull(message = "No puede estar vacio")
 	@Column(name = "fecha_orden")
