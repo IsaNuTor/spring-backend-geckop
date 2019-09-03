@@ -39,6 +39,8 @@ public class Orden implements Serializable {
 	private String iban;
 	
 
+	
+
 	//@NotNull(message = "No puede estar vacio")
 	@Column(name = "fecha_orden")
 	private Date fechaOrden;
@@ -166,6 +168,29 @@ public class Orden implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getNif_IP() {
+		return nif_IP;
+	}
+
+	public void setNif_IP(String nif_IP) {
+		this.nif_IP = nif_IP;
+	}
+
+	public String getIban() {
+		return iban;
+	}
+
+	public void setIban(String iban) {
+		this.iban = iban;
 	}
 	
 	/*public List<Gasto> getGastos() {
