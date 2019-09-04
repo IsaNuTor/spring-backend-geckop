@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -100,21 +101,21 @@ public class GastoViajeRestController {
 	}
 	
 	// Actualizar id_orden del gasto
-	/*@PutMapping("/gastosViaje/update")
+	@PutMapping("/gastosViaje/update")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Boolean subirIdOrden(@RequestBody Gasto gasto, @PathVariable Long id) {
+	public Boolean subirIdOrden(@RequestBody GastoViaje gasto, @PathVariable Long id) {
 		// Primero tenemos que obtener el acreedor de la base de datos.
-		Gasto gastoActual = gastoViajeService.buscarGastoPorId(id);
+		GastoViaje gastoActual = gastoViajeService.buscarGastoViajePorId(id);
 		
 		// Al gasto de la base de datos, ponemos los datos que nos vienen.
 		gastoActual.setId_orden(gasto.getId_orden());
 
 		return gastoViajeService.update(gastoActual);
-	}*/
+	}
 			
 	// Subida de la imagen
 	//@PostMapping("/gastosViaje/subirImagen")
-/*	public ResponseEntity<?> subirImagen(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") Long id) {
+	public ResponseEntity<?> subirImagen(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") Long id) {
 		Map<String, Object> response = new HashMap<>();
 		
 		GastoViaje gastoViaje = gastoViajeService.buscarGastoViajePorId(id);
@@ -133,16 +134,17 @@ public class GastoViajeRestController {
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 			
-			gastoViaje.setFoto(nombreArchivo);
-			gastoViajeService.insertarGasto(gasto);
 			
-			response.put("gasto", gasto);
-			response.put("mensaje", "imagen subida correctamente" + nombreArchivo);
+			//gastoViaje.setFoto(nombreArchivo);
+			//gastoViajeService.insertarGasto(gasto);
+			
+			//response.put("gasto", gasto);
+			//response.put("mensaje", "imagen subida correctamente" + nombreArchivo);
 	
 		}	
 		
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
-	}*/
+	}
 
 	@GetMapping("/imagenes/viajes/{nombreFoto:.+}")
 	public ResponseEntity<Resource> mostrarFoto(@PathVariable String nombreFoto) {
