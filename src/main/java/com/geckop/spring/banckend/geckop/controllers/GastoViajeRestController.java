@@ -9,6 +9,7 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -114,21 +115,20 @@ public class GastoViajeRestController {
 	}
 			
 	// Subida de la imagen
-	//@PostMapping("/gastosViaje/subirImagen")
+	@PostMapping("/gastosViaje/subirImagen")
 	public ResponseEntity<?> subirImagen(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") Long id) {
 		Map<String, Object> response = new HashMap<>();
 		
-		GastoViaje gastoViaje = gastoViajeService.buscarGastoViajePorId(id);
 		
 		if(!archivo.isEmpty()) {
 			String nombreArchivo = id.toString() + "_" + archivo.getOriginalFilename().replace(" ", "");
-			Path rutaArchivo = Paths.get("imagenes").resolve(nombreArchivo).toAbsolutePath();
+			Path rutaArchivo = Paths.get("imagenesViajes").resolve(nombreArchivo).toAbsolutePath();
 		
 			// Mostrar por consola del eclipse la ruta del archivo
 			log.info(rutaArchivo.toString());
 			
 			try {
-				Files.copy(archivo.getInputStream(), rutaArchivo);
+				Files.copy(archivo.getInputStream(), rutaArchivo, StandardCopyOption.REPLACE_EXISTING);
 			} catch (IOException e) {
 				response.put("mensaje", "Error al subir la imagen" + nombreArchivo);
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -149,7 +149,7 @@ public class GastoViajeRestController {
 	@GetMapping("/imagenes/viajes/{nombreFoto:.+}")
 	public ResponseEntity<Resource> mostrarFoto(@PathVariable String nombreFoto) {
 		
-		Path rutaArchivo = Paths.get("imagenes").resolve(nombreFoto).toAbsolutePath();
+		Path rutaArchivo = Paths.get("imagenesViajes").resolve(nombreFoto).toAbsolutePath();
 		
 		// Mostrar por consola del eclipse la ruta del archivo
 		log.info(rutaArchivo.toString());
