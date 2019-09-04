@@ -1,6 +1,8 @@
 package com.geckop.spring.banckend.geckop.models.entity;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -9,6 +11,7 @@ public class Usuario implements Serializable {
 
 	@Id
 	private String dni;
+	@Column(length = 255)
 	private String password;
 	private String nombre;
 	private String apellido1;

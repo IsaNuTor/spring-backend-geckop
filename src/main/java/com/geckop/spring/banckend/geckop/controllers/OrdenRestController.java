@@ -84,4 +84,10 @@ public class OrdenRestController {
 		 return o;
 	}
 	
+	@PostMapping(path="/setorden")
+	Orden setOrden(@RequestBody Orden o){
+		 return ordenService.update(o);
+		 
+	}
+	
 }

@@ -33,4 +33,6 @@ public interface IOrdenService {
 	//Oredenes pendientes de firma de ip 
 	List<Orden> getOrdenesPendientesDeFirmaDeIP(String ip);
 
+	public Orden update(Orden o);
+
 }

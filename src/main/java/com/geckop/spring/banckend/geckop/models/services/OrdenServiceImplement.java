@@ -62,4 +62,10 @@ public class OrdenServiceImplement implements IOrdenService{
 		return (List<Orden>) ordenDao.getOrdenesPendientesDeFirmaDeIP(ip);
 
 	}
+
+	@Override
+	public Orden update(Orden o) {
+		// TODO Auto-generated method stub
+		return ordenDao.save(o);
+	}
 }
