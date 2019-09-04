@@ -86,8 +86,14 @@ public class OrdenRestController {
 	
 	@PostMapping(path="/setorden")
 	Orden setOrden(@RequestBody Orden o){
-		 return ordenService.update(o);
-		 
+		 return ordenService.update(o);	 
 	}
+	
+	@PostMapping(path="/getordenproyecto")
+	List<Orden> getOrdenPorProyecto(@RequestBody String id){
+		List<Orden> o = ordenService.buscarOrdenPorProyecto(id);
+		 return o;
+	}
+	
 	
 }

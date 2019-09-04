@@ -68,4 +68,9 @@ public class OrdenServiceImplement implements IOrdenService{
 		// TODO Auto-generated method stub
 		return ordenDao.save(o);
 	}
+
+	@Override
+	public List<Orden> buscarOrdenPorProyecto(String id) {
+		return (List<Orden>) ordenDao.findByProyect(id);
+	}
 }

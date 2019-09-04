@@ -35,4 +35,6 @@ public interface IOrdenService {
 
 	public Orden update(Orden o);
 
+	public List<Orden> buscarOrdenPorProyecto(String id);
+
 }

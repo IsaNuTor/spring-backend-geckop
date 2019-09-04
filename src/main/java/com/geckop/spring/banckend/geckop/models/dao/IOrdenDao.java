@@ -25,6 +25,10 @@ public interface IOrdenDao extends CrudRepository<Orden, Long>{
 
 	@Query(value = "SELECT * FROM Orden WHERE estado = 'P' AND acronimo IN (SELECT acronimo FROM proyecto WHERE proyecto.ip1 = :ip OR proyecto.ip2 = :ip)", nativeQuery=true)
 	public List<Orden> getOrdenesPendientesDeFirmaDeIP(@Param(value = "ip") String ip);
+
+	// Seleccionar las ordenes por proyecto.
+	@Query(value = "SELECT * FROM Orden WHERE acronimo LIKE :a", nativeQuery=true)
+	public List<Orden> findByProyect(@Param(value = "a")String id);
 	
 	
 
