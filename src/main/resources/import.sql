@@ -47,6 +47,9 @@ INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_conta
 INSERT INTO orden(acronimo, numeracion, estado, nif_user, fecha_orden, num_contabilidad, concepto, memoria,relacion, nif_acreedor, observaciones, tipo, iban, nif_ip) VALUES('P2', '12', 'P','05464654K', '04-05-21','cont5874521', 'concepto', 'memoria2','relacion2','01155456L','obseravaciones', 'V', 'ES216514981216815432','05464654K');
 
 
+/*Gasto Viaje*/
+INSERT INTO gastoviaje( id,  autobus, avion, fecha_ida, fecha_vuelta, foto_autobus, foto_avion, foto_coche, foto_hotel, foto_otros, foto_otros_gastos, foto_taxi, foto_tren, id_orden, importe_autobus, importe_avion, importe_coche, importe_dietas, importe_hotel, importe_otros, importe_otros_gastos, importe_taxi, importe_total, importe_tren, n_dietas, nkilometros, otros, precio_dieta, precio_kilometro, taxi, tren) VALUES(1, '', 'Viaje Madrid-Barcelona', '2019-05-15', '2019-06-15', '', '15_avion.jpg', '', '15_hotel.jpg', '', '', '', '', 15, 0, 55, 0, 0, 170, 0, 0, 0, 225, 0, 0, 0, 0, 0, 0, '', '' );
+
 /*Tabla Proyectos*/
 INSERT INTO proyecto (acronimo, fecha_cierre, fecha_inicio, ip1, ip2, n_contabilidad, nombre, presupuesto) VALUES('Geckop', '2019-05-20', '2018-10-01', '05464654K', '04863609Y', '1', 'Gestión Economica de Proyectos de Investigación', '0')
 INSERT INTO proyecto (acronimo, fecha_cierre, fecha_inicio, ip1, ip2, n_contabilidad, nombre, presupuesto) VALUES('AT', '2018-06-01', '2018-02-01', '12345678A', '', '2', 'AirsoftTeam', '0')

@@ -20,4 +20,6 @@ public interface IGastoViajeService {
 	
 	// Actualizar la id_orden, para saber de que orden es el gasto.
 	public Boolean update(GastoViaje gastoViaje);
+
+	public GastoViaje findByIdOrden(Long id_o);
 }

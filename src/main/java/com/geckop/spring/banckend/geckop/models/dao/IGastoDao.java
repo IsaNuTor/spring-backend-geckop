@@ -10,7 +10,7 @@ import com.geckop.spring.banckend.geckop.models.entity.Gasto;
 
 public interface IGastoDao extends CrudRepository<Gasto, Long>{
 
-	// Seleccionar las ordenes que realizamos.
+	// Seleccionar los gastos de una orden
 	@Query(value = "SELECT * FROM Gasto WHERE id_orden LIKE :id_o", nativeQuery=true)
 	public List<Gasto> findByIdOrden(@Param(value = "id_o") Long id_o);
 }

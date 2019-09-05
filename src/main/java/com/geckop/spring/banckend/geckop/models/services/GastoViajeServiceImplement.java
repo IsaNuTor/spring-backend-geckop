@@ -43,7 +43,12 @@ public class GastoViajeServiceImplement implements IGastoViajeService{
 
 	@Override
 	public Boolean update(GastoViaje gastoViaje) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stubs
 		return gastoViajeDao.save(gastoViaje) != null;
+	}
+
+	@Override
+	public GastoViaje findByIdOrden(Long id_o) {
+		return gastoViajeDao.findByIdOrden(id_o);
 	}
 }

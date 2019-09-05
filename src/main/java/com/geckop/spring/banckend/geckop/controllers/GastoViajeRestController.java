@@ -1,5 +1,6 @@
 package com.geckop.spring.banckend.geckop.controllers;
 
+import com.geckop.spring.banckend.geckop.models.entity.Gasto;
 import com.geckop.spring.banckend.geckop.models.entity.GastoViaje;
 import com.geckop.spring.banckend.geckop.models.services.IGastoViajeService;
 
@@ -170,5 +171,10 @@ public class GastoViajeRestController {
 		HttpHeaders cabecera = new HttpHeaders();
 		cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename()+"\"");
 		return new ResponseEntity<Resource>(recurso, cabecera, HttpStatus.OK);
+	}
+	
+	@PostMapping(path="/gastosViaje/byidorden")
+	public GastoViaje findByIdOrden(@RequestBody Long id_o){
+		return gastoViajeService.findByIdOrden(id_o);
 	}
 }
