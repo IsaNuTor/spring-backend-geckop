@@ -47,11 +47,10 @@ public class ProyectoRestController {
 		return proyectoService.findAll();
 	}
 	
-	@DeleteMapping("/proyecto/{acronimo}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public boolean borrarProyecto(@PathVariable String acronimo) {
+	@PostMapping("/borrarProyecto")
+	public boolean borrarProyecto(@RequestBody Proyecto p) {
 		try {
-			proyectoService.borrarProyecto(acronimo);
+			proyectoService.borrarProyecto(p); 
 			return true;
 		} catch(IllegalArgumentException e) {
 			return false;

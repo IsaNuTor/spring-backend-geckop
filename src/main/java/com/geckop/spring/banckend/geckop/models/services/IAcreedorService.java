@@ -19,4 +19,6 @@ public interface IAcreedorService {
 	public void eliminarAcreedor(String nif);
 
 	public Boolean update(Acreedor acreedor);
+
+	public List<Acreedor> acreedoresOrden(String dni);
 }

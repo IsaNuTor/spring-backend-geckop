@@ -25,6 +25,18 @@ public class UsuarioProyectoRestController {
 		return usuarioProyectoService.insertarUsuarioProyecto(usuarioProyecto);
 	}
 	
+	@PostMapping(path="/borrarusuarioproyecto")
+	public boolean eliminarUsuarioProyecto(@RequestBody UsuarioProyecto usuarioProyecto) {
+		try {
+			//String id = usuarioProyectoService.selectUsuarioProyecto(usuarioProyecto.getDni(), usuarioProyecto.getAcronimo());
+			usuarioProyectoService.eliminarUsuarioProyecto(usuarioProyecto);
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+			
+	}
+	
 	/*Va a retornar la lista de usuarios en json*/
 	@PostMapping(path="/buscarusuariosproyecto")
 	public List<UsuarioProyecto> buscarUsuariosProyecto(@RequestBody String p) {
