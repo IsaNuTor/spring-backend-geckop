@@ -94,5 +94,13 @@ public class AcreedoresRestController {
 			return false;
 		}
 	}
+	
+	@PostMapping("/acreedoresOrden")
+	@ResponseStatus(HttpStatus.CREATED)
+	public List<Acreedor> acreedoresOrden(@RequestBody String dni) {
+		return acreedorService.acreedoresOrden(dni);	
+	}
+	
+	
 }
 

@@ -13,4 +13,8 @@ public interface IUsuarioProyectoService {
 	
 	// Proyectos por dni para orden
 	List<UsuarioProyecto> findBydni(String p);
+
+	void eliminarUsuarioProyecto(UsuarioProyecto u);
+	//String selectUsuarioProyecto(String dni, String ac);
+
 }

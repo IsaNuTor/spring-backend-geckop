@@ -3,6 +3,7 @@ package com.geckop.spring.banckend.geckop.models.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Service;
 
 import com.geckop.spring.banckend.geckop.models.dao.IUsuarioProyectoDao;
@@ -38,6 +39,16 @@ public class UsuarioProyectoServiceImplement implements IUsuarioProyectoService 
 		// TODO Auto-generated method stub
 		return (List<UsuarioProyecto>) usuarioProyectoDao.findByDni(p);
 	}
+
+	@Override
+	public void eliminarUsuarioProyecto(UsuarioProyecto u) {
+		usuarioProyectoDao.delete(u);
+	}
+
+	/*@Override
+	public String selectUsuarioProyecto(String dni, String ac) {
+		return usuarioProyectoDao.selectUsuarioProyecto(dni, ac);
+	}*/
 
 	
 }

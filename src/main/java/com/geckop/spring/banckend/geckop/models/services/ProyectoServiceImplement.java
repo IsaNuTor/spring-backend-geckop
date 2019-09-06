@@ -30,8 +30,8 @@ public class ProyectoServiceImplement implements IProyectoService {
 	}
 
 	@Override
-	public void borrarProyecto(String acronimo) {
-		proyectoDao.delete(acronimo);
+	public void borrarProyecto(Proyecto p) {
+		proyectoDao.delete(p);
 		
 	}
 	
