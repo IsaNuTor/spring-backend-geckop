@@ -51,4 +51,9 @@ public class AcreedorServiceImplement implements IAcreedorService{
 		return acreedorDao.save(acreedor) != null;
 	}
 
+	@Override
+	public List<Acreedor> acreedoresOrden(String dni) {
+		return acreedorDao.acreedoresOrden(dni);
+	}
+
 }

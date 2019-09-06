@@ -11,6 +11,6 @@ import com.geckop.spring.banckend.geckop.models.entity.Acreedor;
 public interface IAcreedorDao extends CrudRepository<Acreedor, String>{
 
 	@Query(value = "SELECT * FROM Acreedor WHERE nif NOT IN (SELECT dni FROM Usuario WHERE dni != :dni)", nativeQuery=true)
-	List<Acreedor> acreedoresOden(@Param(value = "dni") String dni);
+	List<Acreedor> acreedoresOrden(@Param(value = "dni") String dni);
 
 }
