@@ -37,8 +37,7 @@ public class Orden implements Serializable {
 	private String tipo;
 	private String nif_IP;
 	private String iban;
-	
-
+	private String observaciones_IP;
 	
 
 	//@NotNull(message = "No puede estar vacio")
@@ -193,16 +192,13 @@ public class Orden implements Serializable {
 		this.iban = iban;
 	}
 	
-	/*public List<Gasto> getGastos() {
-		return gastos;
+	public String getObservaciones_IP() {
+		return observaciones_IP;
 	}
 
-	public void setGastos(List<Gasto> gastos) {
-		this.gastos = gastos;
-	}*/
+	public void setObservaciones_IP(String observaciones_IP) {
+		this.observaciones_IP = observaciones_IP;
+	}
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 }
