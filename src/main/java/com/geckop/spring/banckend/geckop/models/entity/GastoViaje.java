@@ -110,6 +110,23 @@ public class GastoViaje implements Serializable {
 	@Column(name="importe_total")
 	private double importeTotal;
 	
+	/*Itinerario*/
+	@Column(name="itinerario")
+	private String itinerario;
+	
+	@Column(name="check_avion")
+	private Boolean checkAgenciaAvion;
+	
+	@Column(name="check_tren")
+	private Boolean checkAgenciaTren;
+	
+	@Column(name="check_alojamiento")
+	private Boolean checkAgenciaAlojamiento;
+	
+	@Column(name="check_otros_agencia")
+	private String otrosAgencia;
+	
+	
 	/* Getters y Setters */
 	
 	/**
@@ -118,6 +135,46 @@ public class GastoViaje implements Serializable {
 	
 	public Long getId() {
 		return id;
+	}
+
+	public String getItinerario() {
+		return itinerario;
+	}
+
+	public void setItinerario(String itinerario) {
+		this.itinerario = itinerario;
+	}
+
+	public Boolean getCheckAgenciaAvion() {
+		return checkAgenciaAvion;
+	}
+
+	public void setCheckAgenciaAvion(Boolean checkAgenciaAvion) {
+		this.checkAgenciaAvion = checkAgenciaAvion;
+	}
+
+	public Boolean getCheckAgenciaTren() {
+		return checkAgenciaTren;
+	}
+
+	public void setCheckAgenciaTren(Boolean checkAgenciaTren) {
+		this.checkAgenciaTren = checkAgenciaTren;
+	}
+
+	public Boolean getCheckAgenciaAlojamiento() {
+		return checkAgenciaAlojamiento;
+	}
+
+	public void setCheckAgenciaAlojamiento(Boolean checkAgenciaAlojamiento) {
+		this.checkAgenciaAlojamiento = checkAgenciaAlojamiento;
+	}
+
+	public String getOtrosAgencia() {
+		return otrosAgencia;
+	}
+
+	public void setOtrosAgencia(String otrosAgencia) {
+		this.otrosAgencia = otrosAgencia;
 	}
 
 	public void setId(Long id) {

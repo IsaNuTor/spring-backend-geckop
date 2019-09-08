@@ -30,10 +30,6 @@ import com.geckop.spring.banckend.geckop.models.services.IOrdenService;
 import com.geckop.spring.banckend.geckop.models.services.IUsuarioProyectoService;
 import com.geckop.spring.banckend.geckop.models.services.IUsuarioService;
 import com.geckop.spring.banckend.geckop.models.services.UsuarioServiceImplement;
-import com.qoppa.pdf.PDFException;
-import com.qoppa.pdf.form.FormField;
-import com.qoppa.pdf.form.TextField;
-import com.qoppa.pdfFields.PDFFields;
 
 
 @CrossOrigin(origins= {"http://localhost:4200", "https://geckop.firebaseapp.com"})
