@@ -7,11 +7,15 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
+import org.apache.pdfbox.pdmodel.interactive.form.PDCheckBox;
 import org.apache.pdfbox.pdmodel.interactive.form.PDField;
+import org.apache.pdfbox.pdmodel.interactive.form.PDRadioButton;
 import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,18 +26,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.geckop.spring.banckend.geckop.models.entity.Gasto;
+import com.geckop.spring.banckend.geckop.models.entity.GastoViaje;
 import com.geckop.spring.banckend.geckop.models.entity.Orden;
 import com.geckop.spring.banckend.geckop.models.entity.Usuario;
+
 import com.geckop.spring.banckend.geckop.models.services.IOrdenService;
-import com.geckop.spring.banckend.geckop.models.services.IUsuarioProyectoService;
-import com.geckop.spring.banckend.geckop.models.services.IUsuarioService;
-import com.geckop.spring.banckend.geckop.models.services.UsuarioServiceImplement;
-import com.qoppa.pdf.PDFException;
-import com.qoppa.pdf.form.FormField;
-import com.qoppa.pdf.form.TextField;
-import com.qoppa.pdfFields.PDFFields;
+
 
 
 @CrossOrigin(origins= {"http://localhost:4200", "https://geckop.firebaseapp.com"})
@@ -114,17 +117,20 @@ public class OrdenRestController {
 		 return o;
 	}
 	
+	
+	
+	/*FUNICONES PARA LOS PDF*/
 	@PostMapping(path="/generarPDF")
 	Long generarPDF (@RequestBody Orden o){
+		Boolean tipoG = o.getTipo().equals("G");
 		try {
-			//URL u = new URL("https://www.ucm.es/data/cont/docs/32-2018-10-25-20181025_doc1_frm_orden_pago_gastos_generales.pdf");
-		
-			Path rutaArchivo = Paths.get("pdfs").resolve("ordenGeneral.pdf").toAbsolutePath();
-			
-	        //text file, should be opening in default text editor
+			Path rutaArchivo;
+			if(tipoG)
+				rutaArchivo= Paths.get("pdfs").resolve("ordenGeneral.pdf").toAbsolutePath();
+			else
+				rutaArchivo= Paths.get("pdfs").resolve("ordenViajes.pdf").toAbsolutePath();
+				
 	        File file = new File(rutaArchivo.toString());
-	        
-	        
 	        
 			PDDocument pdfDocument = PDDocument.load(file);
 			PDAcroForm pdfFields = pdfDocument.getDocumentCatalog().getAcroForm();
@@ -137,20 +143,42 @@ public class OrdenRestController {
                 ((PDTextField) pdfFields.getField("NUM_ORDEN")).setValue(o.getNumeracion().toString());
     			((PDTextField) pdfFields.getField("FECHA")).setValue(o.getFechaOrden().toString());
     			((PDTextField) pdfFields.getField("REF_PROYECTO")).setValue(o.getAcronimo());
-    			((PDTextField) pdfFields.getField("NUM_CONTAB")).setValue(o.getNum_contabilidad());
-                
-                
-                
-                
-                //field.setValue("Text Entry");
-                
-                // If a field is nested within the form tree a fully qualified name
-                // might be provided to access the field.
-                //field = (PDTextField) acroForm.getField( "fieldsContainer.nestedSampleField" );
-                //field.setValue("Text Entry");
+    			((PDTextField) pdfFields.getField("IBAN")).setValue(o.getIban());
+    			//((PDTextField) pdfFields.getField("BIC")).setValue("");
+    			
+    			if(tipoG) {
+
+        			((PDTextField) pdfFields.getField("RELACION")).setValue(o.getRelacion());
+        			((PDTextField) pdfFields.getField("NUM_CONTAB")).setValue(o.getNum_contabilidad());
+        			((PDTextField) pdfFields.getField("MEMORIA")).setValue(o.getMemoria());
+        			((PDTextField) pdfFields.getField("OBSERVAC")).setValue(o.getObservaciones());
+      
+        			//Rellenar acreedor
+        			((PDTextField) pdfFields.getField("NOMBRE_PAGAR")).setValue(o.getNif_acreedor());
+ 
+    			}else {
+    			 				
+    				// Irá por separado((PDTextField) pdfFields.getField("VIAJANTE")).setValue(o.getIban());
+    				
+    				
+    				if(o.getRelacion().equals("Miembro del proyecto"))
+    					((PDRadioButton) pdfFields.getField("RELACION_PROYECTO")).setValue("miembro_proy");
+    				else if(o.getRelacion().equals("Profesor Invitado"))
+    					((PDRadioButton) pdfFields.getField("RELACION_PROYECTO")).setValue("prof_invitado");
+    				else if(o.getRelacion().equals("Miembro del equipo de trabajo"))
+    					((PDRadioButton) pdfFields.getField("RELACION_PROYECTO")).setValue("miembro_equipo");
+    			
+    					
+    					
+    				((PDTextField) pdfFields.getField("OBSERVACIONES")).setValue(o.getObservaciones());
+    				((PDTextField) pdfFields.getField("OBJETO_VIAJE")).setValue(o.getMemoria());
+        			((PDTextField) pdfFields.getField("NUM_CONTABILIDAD")).setValue(o.getNum_contabilidad());
+    			}
+    				
+              
             }
 				
-			 Path rutaArchivo2 = Paths.get("pdfs").resolve("pdf_prueba.pdf").toAbsolutePath();
+			 Path rutaArchivo2 = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
 			 pdfDocument.save(rutaArchivo2.toString());
 			 pdfDocument.close(); 
 			 
@@ -163,6 +191,145 @@ public class OrdenRestController {
 			return 0L;
 		}
 		
+	}
+	
+	
+	@PostMapping(path="/rellenarIPPDF")
+	Long rellenarDatosIP(@RequestBody Usuario ip){
+		
+		
+		
+		Path rutaArchivo = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
+        File file = new File(rutaArchivo.toString());
+        		
+		try {
+			PDDocument pdfDocument = PDDocument.load(file);
+			PDAcroForm pdfFields = pdfDocument.getDocumentCatalog().getAcroForm();
+			 if (pdfFields != null)
+			 {
+				((PDTextField) pdfFields.getField("NOMBRE_IP")).setValue(ip.getNombre() + " " + ip.getApellido1() + " "+ ip.getApellido2());
+				((PDTextField) pdfFields.getField("DPTO_IP")).setValue(ip.getDepartamento());
+				((PDTextField) pdfFields.getField("CTRO_IP")).setValue(ip.getCentro());
+				((PDTextField) pdfFields.getField("NIF_IP")).setValue(ip.getDni());
+				((PDTextField) pdfFields.getField("TLF_IP")).setValue(ip.getTelefono());
+				((PDTextField) pdfFields.getField("EMAIL_IP")).setValue(ip.getEmail());	
+				
+			 }
+			 
+			 Path rutaArchivo2 = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
+			 pdfDocument.save(rutaArchivo2.toString());
+			 pdfDocument.close(); 
+			 return 0L;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0L;
+		} 
+	}
+	@PostMapping(path="/rellenarIPPDFV")
+	Long rellenarDatosIPV(@RequestBody Usuario ip){
+		
+		
+		
+		Path rutaArchivo = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
+        File file = new File(rutaArchivo.toString());
+        		
+		try {
+			PDDocument pdfDocument = PDDocument.load(file);
+			PDAcroForm pdfFields = pdfDocument.getDocumentCatalog().getAcroForm();
+			 if (pdfFields != null)
+			 {
+				((PDTextField) pdfFields.getField("NOMBRE_INVESTIGADOR")).setValue(ip.getNombre() + " " + ip.getApellido1() + " "+ ip.getApellido2());
+ 				((PDTextField) pdfFields.getField("NIF")).setValue(ip.getDni());
+ 				((PDTextField) pdfFields.getField("TELEFONO")).setValue(ip.getTelefono());
+ 				((PDTextField) pdfFields.getField("EMAIL")).setValue(ip.getEmail());	
+ 				((PDTextField) pdfFields.getField("DEPARTAMENTO")).setValue(ip.getDepartamento());
+ 				((PDTextField) pdfFields.getField("CENTRO")).setValue(ip.getCentro());
+			 }
+			 
+			 Path rutaArchivo2 = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
+			 pdfDocument.save(rutaArchivo2.toString());
+			 pdfDocument.close(); 
+			 return 0L;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0L;
+		} 
+	}
+	
+	@PostMapping(path="/rellenarGastosPDF")
+	Long rellenarGastosPDF(@RequestBody List<Gasto> gastos){
+		
+		Path rutaArchivo = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
+        File file = new File(rutaArchivo.toString());
+        		
+		try {
+			PDDocument pdfDocument = PDDocument.load(file);
+			PDAcroForm pdfFields = pdfDocument.getDocumentCatalog().getAcroForm();
+			 if (pdfFields != null)
+			 {
+				for(int i = 0; i < gastos.size(); i++) {				
+					((PDTextField) pdfFields.getField("PROV_FAC_"+(i+1))).setValue(gastos.get(i).getDescripcion());
+					((PDTextField) pdfFields.getField("NUM_FAC_"+(i+1))).setValue(gastos.get(i).getnFactura());
+					((PDTextField) pdfFields.getField("IMP_FAC_"+(i+1))).setValue(String.valueOf(gastos.get(i).getImporte()));
+				}
+			 }
+			 Path rutaArchivo2 = Paths.get("pdfs").resolve("pdf_prueba.pdf").toAbsolutePath();
+			 pdfDocument.save(rutaArchivo2.toString());
+			 pdfDocument.close(); 
+			 return 0L;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0L;
+		} 
+	}
+	
+	@PostMapping(path="/rellenarGastoPDFV")
+	Long rellenarGastosPDFV(@RequestBody GastoViaje g){
+		
+		Path rutaArchivo = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
+        File file = new File(rutaArchivo.toString());
+        		
+		try {
+			PDDocument pdfDocument = PDDocument.load(file);
+			PDAcroForm pdfFields = pdfDocument.getDocumentCatalog().getAcroForm();
+			 if (pdfFields != null)
+			 {
+			 	//((PDTextField) pdfFields.getField("ITINERARIO")).setValue(o.getItinerario());	
+			  	((PDTextField) pdfFields.getField("FECHA_IDA")).setValue(g.getFechaIda().toString());
+			  	((PDTextField) pdfFields.getField("FECHA_VUELTA")).setValue(g.getFechaVuelta().toString());
+				((PDTextField) pdfFields.getField("AVION")).setValue(String.valueOf(g.getImporteAvion()));
+				((PDTextField) pdfFields.getField("COCHE")).setValue(String.valueOf(g.getImporteCoche()));
+				((PDTextField) pdfFields.getField("TREN")).setValue(String.valueOf(g.getImporteTren()));
+				((PDTextField) pdfFields.getField("BUS")).setValue(String.valueOf(g.getImporteAutobus()));
+				((PDTextField) pdfFields.getField("TAXI")).setValue(String.valueOf(g.getImporteTaxi()));
+				((PDTextField) pdfFields.getField("HOTEL")).setValue(String.valueOf(g.getImporteHotel()));
+				((PDTextField) pdfFields.getField("OTROS")).setValue(String.valueOf(g.getImporteOtros()));
+				((PDTextField) pdfFields.getField("DESCR_OTROS")).setValue(g.getOtros());
+				((PDTextField) pdfFields.getField("NUM_DIETAS")).setValue(String.valueOf(g.getnDietas()));
+				((PDTextField) pdfFields.getField("IMP_DIETA")).setValue(String.valueOf(g.getPrecioDieta()));
+				((PDTextField) pdfFields.getField("TOTAL_DIETAS")).setValue(String.valueOf(g.getImporteDietas()));
+				((PDTextField) pdfFields.getField("CONGRESOS")).setValue(String.valueOf(g.getImporteOtrosGastos()));
+				((PDTextField) pdfFields.getField("KILOMETROS")).setValue(String.valueOf(g.getNkilometros()));
+				/*((PDCheckBox) pdfFields.getField("AG_AVION")).);
+				((PDCheckBox) pdfFields.getField("AG_TREN")).setValue(o.getIban());
+				((PDCheckBox) pdfFields.getField("AG_ALOJA")).setValue(o.getIban());
+				((PDCheckBox) pdfFields.getField("AG_OTRO_DESC")).setValue(o.getIban());*/
+				((PDTextField) pdfFields.getField("TOTAL_GASTOS")).setValue(String.valueOf(g.getImporteTotal()));
+				((PDTextField) pdfFields.getField("EURXKM")).setValue(String.valueOf(g.getPrecioKilometro()));
+
+			 }
+			 Path rutaArchivo2 = Paths.get("pdfs").resolve("pdf_prueba.pdf").toAbsolutePath();
+			 pdfDocument.save(rutaArchivo2.toString());
+			 pdfDocument.close(); 
+			 return 0L;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0L;
+		} 
 	}
 		 
 	
