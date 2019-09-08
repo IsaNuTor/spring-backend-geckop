@@ -49,6 +49,21 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- <dependency>
+		    <groupId>com.qoppa.pdffields</groupId>
+		    <artifactId>pdffields</artifactId>
+		    <version>v2019R1.00</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/src/main/resources/jPDFFields.v2019R1.00.jar</systemPath>
+		</dependency>-->
+		<!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
+		<dependency>
+		    <groupId>org.apache.pdfbox</groupId>
+		    <artifactId>pdfbox</artifactId>
+		    <version>2.0.16</version>
+		</dependency>
+		
+		
 	</dependencies>
 
 	<build>
@@ -59,5 +74,6 @@
 			</plugin>
 		</plugins>
 	</build>
+	
 
 </project>

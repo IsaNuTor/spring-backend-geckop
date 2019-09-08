@@ -1,7 +1,18 @@
 package com.geckop.spring.banckend.geckop.controllers;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Vector;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
+import org.apache.pdfbox.pdmodel.interactive.form.PDField;
+import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,7 +25,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.geckop.spring.banckend.geckop.models.entity.Orden;
+import com.geckop.spring.banckend.geckop.models.entity.Usuario;
 import com.geckop.spring.banckend.geckop.models.services.IOrdenService;
+import com.geckop.spring.banckend.geckop.models.services.IUsuarioProyectoService;
+import com.geckop.spring.banckend.geckop.models.services.IUsuarioService;
+import com.geckop.spring.banckend.geckop.models.services.UsuarioServiceImplement;
+import com.qoppa.pdf.PDFException;
+import com.qoppa.pdf.form.FormField;
+import com.qoppa.pdf.form.TextField;
+import com.qoppa.pdfFields.PDFFields;
 
 
 @CrossOrigin(origins= {"http://localhost:4200", "https://geckop.firebaseapp.com"})
@@ -94,6 +113,58 @@ public class OrdenRestController {
 		List<Orden> o = ordenService.buscarOrdenPorProyecto(id);
 		 return o;
 	}
+	
+	@PostMapping(path="/generarPDF")
+	Long generarPDF (@RequestBody Orden o){
+		try {
+			//URL u = new URL("https://www.ucm.es/data/cont/docs/32-2018-10-25-20181025_doc1_frm_orden_pago_gastos_generales.pdf");
+		
+			Path rutaArchivo = Paths.get("pdfs").resolve("ordenGeneral.pdf").toAbsolutePath();
+			
+	        //text file, should be opening in default text editor
+	        File file = new File(rutaArchivo.toString());
+	        
+	        
+	        
+			PDDocument pdfDocument = PDDocument.load(file);
+			PDAcroForm pdfFields = pdfDocument.getDocumentCatalog().getAcroForm();
+			 if (pdfFields != null)
+			 {
+             // Retrieve an individual field and set its value.
+                //PDTextField field = (PDTextField) acroForm.getField( "sampleField" );
+                //List<PDField> pdfFields = acroForm.getFields();
+                
+                ((PDTextField) pdfFields.getField("NUM_ORDEN")).setValue(o.getNumeracion().toString());
+    			((PDTextField) pdfFields.getField("FECHA")).setValue(o.getFechaOrden().toString());
+    			((PDTextField) pdfFields.getField("REF_PROYECTO")).setValue(o.getAcronimo());
+    			((PDTextField) pdfFields.getField("NUM_CONTAB")).setValue(o.getNum_contabilidad());
+                
+                
+                
+                
+                //field.setValue("Text Entry");
+                
+                // If a field is nested within the form tree a fully qualified name
+                // might be provided to access the field.
+                //field = (PDTextField) acroForm.getField( "fieldsContainer.nestedSampleField" );
+                //field.setValue("Text Entry");
+            }
+				
+			 Path rutaArchivo2 = Paths.get("pdfs").resolve("pdf_prueba.pdf").toAbsolutePath();
+			 pdfDocument.save(rutaArchivo2.toString());
+			 pdfDocument.close(); 
+			 
+			 
+			 
+			return 0L;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0L;
+		}
+		
+	}
+		 
 	
 	
 }
