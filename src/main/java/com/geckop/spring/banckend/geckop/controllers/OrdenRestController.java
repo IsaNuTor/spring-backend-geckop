@@ -36,16 +36,13 @@ import com.geckop.spring.banckend.geckop.models.entity.Orden;
 import com.geckop.spring.banckend.geckop.models.entity.Usuario;
 
 import com.geckop.spring.banckend.geckop.models.services.IOrdenService;
-<<<<<<< HEAD
 
-=======
 import com.geckop.spring.banckend.geckop.models.services.IUsuarioProyectoService;
 import com.geckop.spring.banckend.geckop.models.services.IUsuarioService;
 import com.geckop.spring.banckend.geckop.models.services.UsuarioServiceImplement;
->>>>>>> 3609ae580ec1431687c6340ae62ed10755c58fa1
 
 
-@CrossOrigin(origins= {"http://localhost:4200", "https://geckop.firebaseapp.com"})
+@CrossOrigin(origins= {"http://localhost:4200", "https://geckop.firebaseapp.com", "https://geckop-dd655.firebaseapp.com", "https://geckop-dd655.web.app"})
 @RestController
 @RequestMapping("/api")
 public class OrdenRestController {

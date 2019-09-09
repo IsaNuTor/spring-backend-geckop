@@ -19,7 +19,7 @@ import com.geckop.spring.banckend.geckop.models.entity.Acreedor;
 import com.geckop.spring.banckend.geckop.models.services.IAcreedorService;
 
 // Damos acceso a este dominio para que pueda enviar y recibir datos.
-@CrossOrigin(origins= {"http://localhost:4200", "https://geckop.firebaseapp.com"})
+@CrossOrigin(origins= {"http://localhost:4200", "https://geckop.firebaseapp.com", "https://geckop-dd655.firebaseapp.com", "https://geckop-dd655.web.app"})
 @RestController
 @RequestMapping("/api")
 public class AcreedoresRestController {
