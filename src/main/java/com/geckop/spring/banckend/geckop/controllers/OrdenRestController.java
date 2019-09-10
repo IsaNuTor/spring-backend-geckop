@@ -1,17 +1,13 @@
 package com.geckop.spring.banckend.geckop.controllers;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.Set;
-import java.util.Vector;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDCheckBox;
 import org.apache.pdfbox.pdmodel.interactive.form.PDField;
@@ -26,7 +22,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,6 +35,7 @@ import com.geckop.spring.banckend.geckop.models.services.IOrdenService;
 import com.geckop.spring.banckend.geckop.models.services.IUsuarioProyectoService;
 import com.geckop.spring.banckend.geckop.models.services.IUsuarioService;
 import com.geckop.spring.banckend.geckop.models.services.UsuarioServiceImplement;
+
 
 
 @CrossOrigin(origins= {"http://localhost:4200", "https://geckop.firebaseapp.com", "https://geckop-dd655.firebaseapp.com", "https://geckop-dd655.web.app"})
@@ -127,11 +123,7 @@ public class OrdenRestController {
 	Long generarPDF (@RequestBody Orden o){
 		Boolean tipoG = o.getTipo().equals("G");
 		try {
-			Path rutaArchivo;
-			if(tipoG)
-				rutaArchivo= Paths.get("pdfs").resolve("ordenGeneral.pdf").toAbsolutePath();
-			else
-				rutaArchivo= Paths.get("pdfs").resolve("ordenViajes.pdf").toAbsolutePath();
+			Path rutaArchivo = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
 				
 	        File file = new File(rutaArchivo.toString());
 	        
@@ -177,19 +169,17 @@ public class OrdenRestController {
     				((PDTextField) pdfFields.getField("OBJETO_VIAJE")).setValue(o.getMemoria());
         			((PDTextField) pdfFields.getField("NUM_CONTABILIDAD")).setValue(o.getNum_contabilidad());
     			}
-    				
-              
             }
 				
-			 Path rutaArchivo2 = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
+			 Path rutaArchivo2 = Paths.get("pdfs").resolve(o.getId() +".pdf").toAbsolutePath();
 			 pdfDocument.save(rutaArchivo2.toString());
 			 pdfDocument.close(); 
 			 
+			
 			 
 			 
 			return 0L;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return 0L;
 		}
@@ -202,7 +192,7 @@ public class OrdenRestController {
 		
 		
 		
-		Path rutaArchivo = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
+		Path rutaArchivo = Paths.get("pdfs").resolve("ordenGeneral.pdf").toAbsolutePath();
         File file = new File(rutaArchivo.toString());
         		
 		try {
@@ -234,7 +224,7 @@ public class OrdenRestController {
 		
 		
 		
-		Path rutaArchivo = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
+		Path rutaArchivo = Paths.get("pdfs").resolve("ordenViajes.pdf").toAbsolutePath();
         File file = new File(rutaArchivo.toString());
         		
 		try {
@@ -255,7 +245,6 @@ public class OrdenRestController {
 			 pdfDocument.close(); 
 			 return 0L;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return 0L;
 		} 
@@ -278,12 +267,11 @@ public class OrdenRestController {
 					((PDTextField) pdfFields.getField("IMP_FAC_"+(i+1))).setValue(String.valueOf(gastos.get(i).getImporte()));
 				}
 			 }
-			 Path rutaArchivo2 = Paths.get("pdfs").resolve("pdf_prueba.pdf").toAbsolutePath();
+			 Path rutaArchivo2 = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
 			 pdfDocument.save(rutaArchivo2.toString());
 			 pdfDocument.close(); 
 			 return 0L;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return 0L;
 		} 
@@ -324,7 +312,7 @@ public class OrdenRestController {
 				((PDTextField) pdfFields.getField("EURXKM")).setValue(String.valueOf(g.getPrecioKilometro()));
 
 			 }
-			 Path rutaArchivo2 = Paths.get("pdfs").resolve("pdf_prueba.pdf").toAbsolutePath();
+			 Path rutaArchivo2 = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
 			 pdfDocument.save(rutaArchivo2.toString());
 			 pdfDocument.close(); 
 			 return 0L;
@@ -334,7 +322,18 @@ public class OrdenRestController {
 			return 0L;
 		} 
 	}
-		 
+	
+	
+	@PostMapping(path="/probarRuta")
+	public Long probarRutas(){
+		File f = new File("imagenes");
+		System.out.println(f.getAbsolutePath());
+		f.mkdir();
+		System.out.println(f.getAbsolutePath());
+		
+		
+		return 0L;
+	}
 	
 	
 }
