@@ -58,19 +58,6 @@ public class UsuarioRestController {
    }
    
    
-   
-   /*@PutMapping("/usuario/{nif}")
-   @ResponseStatus(HttpStatus.CREATED)
-   public Usuario actualizarEmail(@RequestBody String email, @PathVariable String nif  ) {
- 	  if(usuarioService.findById(nif) != null) {
- 		  usuarioService.
- 	  }
- 	  
-	   
-	   return user;
-   }
-   */
-   
    /*Devuelve el usuario creado o null si no ha podido crearlo*/
   @PostMapping(path="/registro")
    public Usuario registro(@RequestBody Usuario usuario) {

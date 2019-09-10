@@ -1,12 +1,20 @@
 package com.geckop.spring.banckend.geckop.controllers;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Blob;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.pdfbox.io.IOUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.apache.pdfbox.pdmodel.interactive.form.PDCheckBox;
@@ -14,7 +22,12 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 import org.apache.pdfbox.pdmodel.interactive.form.PDRadioButton;
 import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +35,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -304,10 +318,13 @@ public class OrdenRestController {
 				((PDTextField) pdfFields.getField("TOTAL_DIETAS")).setValue(String.valueOf(g.getImporteDietas()));
 				((PDTextField) pdfFields.getField("CONGRESOS")).setValue(String.valueOf(g.getImporteOtrosGastos()));
 				((PDTextField) pdfFields.getField("KILOMETROS")).setValue(String.valueOf(g.getNkilometros()));
-				/*((PDCheckBox) pdfFields.getField("AG_AVION")).);
-				((PDCheckBox) pdfFields.getField("AG_TREN")).setValue(o.getIban());
-				((PDCheckBox) pdfFields.getField("AG_ALOJA")).setValue(o.getIban());
-				((PDCheckBox) pdfFields.getField("AG_OTRO_DESC")).setValue(o.getIban());*/
+				if(g.getCheckAgenciaAvion())
+				((PDCheckBox) pdfFields.getField("AG_AVION")).check();
+				if(g.getCheckAgenciaTren())
+				((PDCheckBox) pdfFields.getField("AG_TREN")).check();
+				if(g.getCheckAgenciaAlojamiento())
+				((PDCheckBox) pdfFields.getField("AG_ALOJA")).check();
+				((PDTextField) pdfFields.getField("AG_OTRO_DESC")).setValue(g.getOtrosAgencia());;
 				((PDTextField) pdfFields.getField("TOTAL_GASTOS")).setValue(String.valueOf(g.getImporteTotal()));
 				((PDTextField) pdfFields.getField("EURXKM")).setValue(String.valueOf(g.getPrecioKilometro()));
 
@@ -334,6 +351,59 @@ public class OrdenRestController {
 		
 		return 0L;
 	}
+	
+	/*@PostMapping(path="/mostrarPDF")
+	public byte[] mostrarPDF(@RequestBody Long idOrden) {
+		Path rutaArchivo = Paths.get("pdfs").resolve(idOrden.toString()+".pdf").toAbsolutePath();
+		
+		File f = new File(rutaArchivo.toString());
+		f.getAbsolutePath();
+		InputStream inputStream;
+		try {
+			inputStream = new FileInputStream(f.getAbsolutePath());
+			 byte[] byteArray=null;
+			 String inputStreamToString = inputStream.toString();
+		     byteArray = inputStreamToString.getBytes();
+		     return byteArray;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}*/
+	
+	@RequestMapping(value = "/mostrarPDF/{id}", method=RequestMethod.GET,  produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<byte[]> mostrarPDF(@PathVariable("id")Long idOrden){
+    	
+    	Path rutaArchivo = Paths.get("pdfs").resolve(idOrden.toString()+".pdf").toAbsolutePath();
+		
+		File f = new File(rutaArchivo.toString());
+		f.getAbsolutePath();
+		InputStream inputStream;
+		try {
+			inputStream = new FileInputStream(f.getAbsolutePath());
+			 byte[] byteArray=null;
+			 //String inputStreamToString = inputStream.toString();
+			 
+			 Map<String, Object> mapper = new HashMap<String, Object>();
+		        byte[] content =   IOUtils.toByteArray(inputStream);
+		        return new ResponseEntity<>(content, this.getPDFHeaders(idOrden+".pdf"), HttpStatus.OK);
+		   
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+    }
+    
+    public HttpHeaders getPDFHeaders(String fileName) {
+        HttpHeaders head = new HttpHeaders();
+        head.setContentType(MediaType.parseMediaType("application/pdf"));
+        head.add("content-disposition", "attachment; filename=" + fileName);
+        head.setContentDispositionFormData(fileName, fileName);
+        head.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+        return head;
+    }
+
 	
 	
 }
