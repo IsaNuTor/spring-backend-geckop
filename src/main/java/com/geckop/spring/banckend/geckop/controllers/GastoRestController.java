@@ -121,6 +121,8 @@ public class GastoRestController {
 		
 		if(!archivo.isEmpty()) {
 			String nombreArchivo = id.toString() + "_" + archivo.getOriginalFilename().replace(" ", "");
+			File f = new File("imagenes");
+			f.mkdir();
 			Path rutaArchivo = Paths.get("imagenes").resolve(nombreArchivo).toAbsolutePath();
 		
 			// Mostrar por consola del eclipse la ruta del archivo
@@ -146,6 +148,9 @@ public class GastoRestController {
 	
 	@GetMapping("/imagenes/{nombreFoto:.+}")
 	public ResponseEntity<Resource> mostrarFoto(@PathVariable String nombreFoto) {
+		File f = new File("imagenes");
+		f.mkdir();
+		
 		
 		Path rutaArchivo = Paths.get("imagenes").resolve(nombreFoto).toAbsolutePath();
 		
