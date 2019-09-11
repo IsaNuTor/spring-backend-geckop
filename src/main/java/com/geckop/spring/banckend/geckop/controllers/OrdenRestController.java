@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
@@ -46,9 +48,6 @@ import com.geckop.spring.banckend.geckop.models.entity.Usuario;
 
 import com.geckop.spring.banckend.geckop.models.services.IOrdenService;
 
-import com.geckop.spring.banckend.geckop.models.services.IUsuarioProyectoService;
-import com.geckop.spring.banckend.geckop.models.services.IUsuarioService;
-import com.geckop.spring.banckend.geckop.models.services.UsuarioServiceImplement;
 
 
 
@@ -204,12 +203,17 @@ public class OrdenRestController {
 	@PostMapping(path="/rellenarIPPDF")
 	Long rellenarDatosIP(@RequestBody Usuario ip){
 		
+		File f = new File("pdfs");
+		f.mkdir();
 		
-		
-		Path rutaArchivo = Paths.get("pdfs").resolve("ordenGeneral.pdf").toAbsolutePath();
-        File file = new File(rutaArchivo.toString());
-        		
+		//Path rutaArchivo = Paths.get("pdfs").resolve("ordenGeneral.pdf").toAbsolutePath();
+        	
 		try {
+			URL u = new URL("https://www.ucm.es/data/cont/docs/32-2018-10-25-20181025_doc1_frm_orden_pago_gastos_generales.pdf");
+			/*u.toURI();
+			File file = new File(u.toURI());*/
+			InputStream file = u.openStream();
+        	
 			PDDocument pdfDocument = PDDocument.load(file);
 			PDAcroForm pdfFields = pdfDocument.getDocumentCatalog().getAcroForm();
 			 if (pdfFields != null)
@@ -238,10 +242,14 @@ public class OrdenRestController {
 		
 		
 		
-		Path rutaArchivo = Paths.get("pdfs").resolve("ordenViajes.pdf").toAbsolutePath();
-        File file = new File(rutaArchivo.toString());
+		/*Path rutaArchivo = Paths.get("pdfs").resolve("ordenViajes.pdf").toAbsolutePath();
+        File file = new File(rutaArchivo.toString());*/
         		
 		try {
+			URL u = new URL("https://www.ucm.es/data/cont/docs/32-2018-07-06-doc2_frm_orden_pago_viajes.pdf");
+			/*u.toURI();
+			File file = new File(u.toURI());*/
+			InputStream file = u.openStream();
 			PDDocument pdfDocument = PDDocument.load(file);
 			PDAcroForm pdfFields = pdfDocument.getDocumentCatalog().getAcroForm();
 			 if (pdfFields != null)
