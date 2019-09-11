@@ -137,7 +137,7 @@ public class OrdenRestController {
 	Long generarPDF (@RequestBody Orden o){
 		Boolean tipoG = o.getTipo().equals("G");
 		try {
-			Path rutaArchivo = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
+			Path rutaArchivo = Paths.get("pdfs").resolve("auxPdf.pdf").toAbsolutePath();
 				
 	        File file = new File(rutaArchivo.toString());
 	        
@@ -185,7 +185,7 @@ public class OrdenRestController {
     			}
             }
 				
-			 Path rutaArchivo2 = Paths.get("pdfs").resolve(o.getId() +".pdf").toAbsolutePath();
+			 Path rutaArchivo2 = Paths.get("pdfs").resolve("auxPdf.pdf").toAbsolutePath();
 			 pdfDocument.save(rutaArchivo2.toString());
 			 pdfDocument.close(); 
 			 
@@ -223,7 +223,7 @@ public class OrdenRestController {
 				
 			 }
 			 
-			 Path rutaArchivo2 = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
+			 Path rutaArchivo2 = Paths.get("pdfs").resolve("auxPdf.pdf").toAbsolutePath();
 			 pdfDocument.save(rutaArchivo2.toString());
 			 pdfDocument.close(); 
 			 return 0L;
@@ -254,7 +254,7 @@ public class OrdenRestController {
  				((PDTextField) pdfFields.getField("CENTRO")).setValue(ip.getCentro());
 			 }
 			 
-			 Path rutaArchivo2 = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
+			 Path rutaArchivo2 = Paths.get("pdfs").resolve("auxPdf.pdf").toAbsolutePath();
 			 pdfDocument.save(rutaArchivo2.toString());
 			 pdfDocument.close(); 
 			 return 0L;
@@ -267,7 +267,7 @@ public class OrdenRestController {
 	@PostMapping(path="/rellenarGastosPDF")
 	Long rellenarGastosPDF(@RequestBody List<Gasto> gastos){
 		
-		Path rutaArchivo = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
+		Path rutaArchivo = Paths.get("pdfs").resolve("auxPdf.pdf").toAbsolutePath();
         File file = new File(rutaArchivo.toString());
         		
 		try {
@@ -281,7 +281,7 @@ public class OrdenRestController {
 					((PDTextField) pdfFields.getField("IMP_FAC_"+(i+1))).setValue(String.valueOf(gastos.get(i).getImporte()));
 				}
 			 }
-			 Path rutaArchivo2 = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
+			 Path rutaArchivo2 = Paths.get("pdfs").resolve("auxPdf.pdf").toAbsolutePath();
 			 pdfDocument.save(rutaArchivo2.toString());
 			 pdfDocument.close(); 
 			 return 0L;
@@ -294,7 +294,7 @@ public class OrdenRestController {
 	@PostMapping(path="/rellenarGastoPDFV")
 	Long rellenarGastosPDFV(@RequestBody GastoViaje g){
 		
-		Path rutaArchivo = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
+		Path rutaArchivo = Paths.get("pdfs").resolve("auxPdf.pdf").toAbsolutePath();
         File file = new File(rutaArchivo.toString());
         		
 		try {
@@ -302,7 +302,7 @@ public class OrdenRestController {
 			PDAcroForm pdfFields = pdfDocument.getDocumentCatalog().getAcroForm();
 			 if (pdfFields != null)
 			 {
-			 	//((PDTextField) pdfFields.getField("ITINERARIO")).setValue(o.getItinerario());	
+			 	((PDTextField) pdfFields.getField("ITINERARIO")).setValue(g.getItinerario());	
 			  	((PDTextField) pdfFields.getField("FECHA_IDA")).setValue(g.getFechaIda().toString());
 			  	((PDTextField) pdfFields.getField("FECHA_VUELTA")).setValue(g.getFechaVuelta().toString());
 				((PDTextField) pdfFields.getField("AVION")).setValue(String.valueOf(g.getImporteAvion()));
@@ -329,7 +329,7 @@ public class OrdenRestController {
 				((PDTextField) pdfFields.getField("EURXKM")).setValue(String.valueOf(g.getPrecioKilometro()));
 
 			 }
-			 Path rutaArchivo2 = Paths.get("pdfs").resolve("a.pdf").toAbsolutePath();
+			 Path rutaArchivo2 = Paths.get("pdfs").resolve("auxPdf.pdf").toAbsolutePath();
 			 pdfDocument.save(rutaArchivo2.toString());
 			 pdfDocument.close(); 
 			 return 0L;
@@ -352,43 +352,21 @@ public class OrdenRestController {
 		return 0L;
 	}
 	
-	/*@PostMapping(path="/mostrarPDF")
-	public byte[] mostrarPDF(@RequestBody Long idOrden) {
-		Path rutaArchivo = Paths.get("pdfs").resolve(idOrden.toString()+".pdf").toAbsolutePath();
-		
-		File f = new File(rutaArchivo.toString());
-		f.getAbsolutePath();
-		InputStream inputStream;
-		try {
-			inputStream = new FileInputStream(f.getAbsolutePath());
-			 byte[] byteArray=null;
-			 String inputStreamToString = inputStream.toString();
-		     byteArray = inputStreamToString.getBytes();
-		     return byteArray;
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}*/
-	
 	@RequestMapping(value = "/mostrarPDF/{id}", method=RequestMethod.GET,  produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<byte[]> mostrarPDF(@PathVariable("id")Long idOrden){
     	
-    	Path rutaArchivo = Paths.get("pdfs").resolve(idOrden.toString()+".pdf").toAbsolutePath();
+    	Path rutaArchivo = Paths.get("pdfs").resolve("auxPdf.pdf").toAbsolutePath();
 		
 		File f = new File(rutaArchivo.toString());
 		f.getAbsolutePath();
 		InputStream inputStream;
 		try {
 			inputStream = new FileInputStream(f.getAbsolutePath());
-			 byte[] byteArray=null;
 			 //String inputStreamToString = inputStream.toString();
 			 
-			 Map<String, Object> mapper = new HashMap<String, Object>();
-		        byte[] content =   IOUtils.toByteArray(inputStream);
-		        return new ResponseEntity<>(content, this.getPDFHeaders(idOrden+".pdf"), HttpStatus.OK);
-		   
+	        byte[] content =   IOUtils.toByteArray(inputStream);
+	        return new ResponseEntity<>(content, this.getPDFHeaders("auxPdf.pdf"), HttpStatus.OK);
+	   
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

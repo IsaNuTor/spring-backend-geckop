@@ -145,7 +145,7 @@ public class GastoViajeRestController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/imagenes/viajes/{nombreFoto:.+}")
+	@GetMapping("/imagenesViajes/{nombreFoto:.+}")
 	public ResponseEntity<Resource> mostrarFoto(@PathVariable String nombreFoto) {
 		
 		Path rutaArchivo = Paths.get("imagenesViajes").resolve(nombreFoto).toAbsolutePath();
