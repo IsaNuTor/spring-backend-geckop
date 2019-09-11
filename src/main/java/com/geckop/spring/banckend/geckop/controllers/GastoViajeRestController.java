@@ -96,10 +96,8 @@ public class GastoViajeRestController {
 		System.out.println(gasto.getId_orden());
 		System.out.println(gasto.getFoto());*/
 		
-		GastoViaje g = gastoViajeService.buscarGastoViajePorId(gastoViaje.getId());
-		g.setId_orden(gastoViaje.getId_orden());
 		
-		return gastoViajeService.update(g);
+		return gastoViajeService.update(gastoViaje);
 	}
 	
 	// Actualizar id_orden del gasto
