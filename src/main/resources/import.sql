@@ -54,8 +54,8 @@ INSERT INTO proyecto (acronimo, fecha_cierre, fecha_inicio, ip1, ip2, n_contabil
 INSERT INTO proyecto (acronimo, fecha_cierre, fecha_inicio, ip1, ip2, n_contabilidad, nombre, presupuesto) VALUES('P2', '2019-02-20', '2018-11-01', '04863609Y', '', '4', 'Proyecto2', '1000')
 
 /*Tabla de UsuarioProyecto*/
-INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('Geckop', '05464654K' , 'Miembro del proyecto')
-INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('Geckop', '04863609Y' , 'Miembro del proyecto')
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('Geckop', '05464654K' , 'Investigador Principal')
+INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('Geckop', '04863609Y' , 'Investigador Principal')
 INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('Geckop', '12345678A' , 'Miembro del proyecto')
 INSERT INTO usuarioproyecto (acronimo, dni, rol) VALUES ('Geckop', '01234567A' , 'Miembro del equipo de trabajo')
 

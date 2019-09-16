@@ -209,7 +209,7 @@ public class OrdenRestController {
 		//Path rutaArchivo = Paths.get("pdfs").resolve("ordenGeneral.pdf").toAbsolutePath();
         	
 		try {
-			URL u = new URL("https://www.ucm.es/data/cont/docs/32-2018-10-25-20181025_doc1_frm_orden_pago_gastos_generales.pdf");
+			URL u = new URL("http://antares.sip.ucm.es/manolo/formularios/32-2018-10-25-20181025_doc1_frm_orden_pago_gastos_generales.pdf");
 			/*u.toURI();
 			File file = new File(u.toURI());*/
 			InputStream file = u.openStream();
@@ -246,7 +246,7 @@ public class OrdenRestController {
         File file = new File(rutaArchivo.toString());*/
         		
 		try {
-			URL u = new URL("https://www.ucm.es/data/cont/docs/32-2018-07-06-doc2_frm_orden_pago_viajes.pdf");
+			URL u = new URL("http://antares.sip.ucm.es/manolo/formularios/32-2018-07-06-doc2_frm_orden_pago_viajes.pdf");
 			/*u.toURI();
 			File file = new File(u.toURI());*/
 			InputStream file = u.openStream();
