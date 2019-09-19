@@ -179,4 +179,12 @@ public class GastoRestController {
 	public List<Gasto> findByIdOrden(@RequestBody Long id_o){
 		return gastoService.findByIdOrden(id_o);
 	}
+	
+	
+	// Limpieza de base de datos e imagenes que no sirven 
+	//Borrar todos los gastos de la tabla junto con las imagenes que no se hayan registrado en una orden.
+	@PostMapping(path="/gastos/borrarnull")
+	public List<Gasto> borrarGastoNull(@RequestBody Long id_o){
+		return gastoService.borrarGastoNull(id_o);
+	}
 }

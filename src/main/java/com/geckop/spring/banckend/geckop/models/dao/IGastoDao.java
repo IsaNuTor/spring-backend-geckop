@@ -13,4 +13,9 @@ public interface IGastoDao extends CrudRepository<Gasto, Long>{
 	// Seleccionar los gastos de una orden
 	@Query(value = "SELECT * FROM Gasto WHERE id_orden LIKE :id_o", nativeQuery=true)
 	public List<Gasto> findByIdOrden(@Param(value = "id_o") Long id_o);
+	
+	// Seleccionar los gastos de una orden
+	// delete from gasto where (id_orden is null AND id <> 0); :id_o es 0 siempre
+	@Query(value = "SELECT * FROM Gasto WHERE (id_orden is null AND id <> :id_o)", nativeQuery=true)
+	public List<Gasto> borrarGastoNull(@Param(value = "id_o") Long id_o);
 }

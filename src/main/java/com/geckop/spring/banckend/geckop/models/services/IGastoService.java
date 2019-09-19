@@ -1,9 +1,6 @@
 package com.geckop.spring.banckend.geckop.models.services;
 
 import java.util.List;
-
-import org.springframework.data.repository.query.Param;
-
 import com.geckop.spring.banckend.geckop.models.entity.Gasto;
 
 public interface IGastoService {
@@ -25,4 +22,7 @@ public interface IGastoService {
 	
 	//Devuelve los gastos generales de una orden
 	public List<Gasto> findByIdOrden(Long id_o);
+	
+	//Elimina todos aquellos gastos cuyo id_orden esté a null.
+	public List<Gasto> borrarGastoNull(Long id_o);
 }
