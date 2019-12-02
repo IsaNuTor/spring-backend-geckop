@@ -58,6 +58,7 @@ public class Orden implements Serializable {
 
 	//@NotNull(message = "No puede estar vacio")
 	private String observaciones;
+	private String tipo_gasto;
 	
 	// Cascade sirve para en el caso de que se elimine una orden, elimine los gastos asociados a esa orden.
 	/*@JsonIgnoreProperties({"orden", "hibernateLazyInitializer", "handler"})
@@ -198,6 +199,14 @@ public class Orden implements Serializable {
 
 	public void setObservaciones_IP(String observaciones_IP) {
 		this.observaciones_IP = observaciones_IP;
+	}
+
+	public String getTipo_gasto() {
+		return tipo_gasto;
+	}
+
+	public void setTipo_gasto(String tipo_gasto) {
+		this.tipo_gasto = tipo_gasto;
 	}
 
 	private static final long serialVersionUID = 1L;
